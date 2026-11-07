@@ -23,11 +23,11 @@ a{color:#3ad6b5}
   <div class="spin"></div>
   <h1>Opening secure checkout…</h1>
   <p>Remmy HUB — Premium (Lifetime) · $3.99 one-time<br>Card, Apple Pay, Google Pay & PayPal accepted.</p>
-  <p id="err">Checkout didn't open? <a href="#" onclick="Paddle.Checkout.open({items:[{priceId:'pri_01m6tx9gfcnbcsjjha2s7qfffy',quantity:1}]});return false">Click here to open it manually</a>.</p>
+  <p id="err">Checkout didn't open? <a href="#" onclick="Paddle.Checkout.open({items:[{priceId:priceId,quantity:1}]});return false">Click here to open it manually</a>.</p>
   <span class="badge">🔒 Secured by Paddle · sold from remmyhub.store</span>
 </div>
 <script>
-Paddle.Environment.set("live");
+Paddle.Environment.set("production");
 Paddle.Initialize({
   token: "live_8cbe8378ed759789dff5a666f5f",
   eventCallback: function(ev){
@@ -39,8 +39,10 @@ Paddle.Initialize({
     }
   }
 });
+var params = new URLSearchParams(window.location.search);
+var priceId = params.get("price") || "pri_01m6tx9gfcnbcsjjha2s7qfffy";
 Paddle.Checkout.open({
-  items: [{ priceId: "pri_01m6tx9gfcnbcsjjha2s7qfffy", quantity: 1 }],
+  items: [{ priceId: priceId, quantity: 1 }],
   settings: { displayMode: "overlay", theme: "dark", allowLogout: false }
 });
 setTimeout(function(){ document.getElementById("err").style.display = "block"; }, 6000);
