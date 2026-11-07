@@ -35,7 +35,29 @@ a{color:#3ad6b5}
     <li><b>Enter the key in the loader.</b> Premium access activates automatically. You're done — forever.</li>
   </ol>
   <a class="cta" href="https://discord.gg/FGKzwuQFQB">Join the Discord & Redeem</a>
+  <div style="margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08)">
+    <p style="font-weight:600;color:#fff;margin-bottom:10px">Lost your key? Get it again:</p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <input id="kmail" type="email" placeholder="Your checkout email" style="flex:1;min-width:220px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:#e8eaf0;font-family:inherit;font-size:13px">
+      <button onclick="getkey()" style="background:rgba(58,214,181,.15);border:1px solid rgba(58,214,181,.4);color:#7de8cf;border-radius:10px;padding:12px 18px;font-family:inherit;font-size:13px;cursor:pointer">Find my key</button>
+    </div>
+    <p id="kres" style="margin-top:12px;font-size:13px;color:#7de8cf;word-break:break-all;user-select:all"></p>
+  </div>
   <p class="small">Didn't receive your key within 30 minutes? Email remmyhubsupport@gmail.com or open a ticket in Discord — we'll sort it fast.<br><br>© 2026 Remmy HUB · <a href="index.html">remmyhub.store</a></p>
 </div>
+<script>
+async function getkey(){
+  var m=document.getElementById("kmail").value.trim().toLowerCase();
+  var r=document.getElementById("kres");
+  if(!m||m.indexOf("@")<0){r.style.color="#ff7b7b";r.textContent="Enter the email you used at checkout.";return}
+  r.style.color="#8b959e";r.textContent="Checking...";
+  try{
+    var w=await fetch("https://remmy-mint.mrsadii.workers.dev/getkey?email="+encodeURIComponent(m));
+    var j=await w.json();
+    if(j.found){r.style.color="#7de8cf";r.textContent="Your key: "+j.key}
+    else{r.style.color="#ff9b7b";r.textContent="No key found for that email yet - if you just paid, try again in a minute or contact support."}
+  }catch(e){r.style.color="#ff7b7b";r.textContent="Could not reach the key server - try again."}
+}
+</script>
 </body>
 </html>
