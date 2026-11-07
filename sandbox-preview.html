@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sandbox Checkout Preview — Remmy HUB</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#07090d;color:#e8eaf0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.box{text-align:center;padding:40px;max-width:520px}
+.spin{width:46px;height:46px;border-radius:50%;margin:0 auto 22px;border:3px solid rgba(255,255,255,.12);border-top-color:#ffaa28;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+h1{font-size:22px;color:#f8fafc;margin-bottom:8px}
+p{color:#8b959e;font-size:14px;max-width:440px;margin:0 auto}
+.badge{display:inline-block;margin-top:26px;background:rgba(255,170,40,.12);border:1px solid rgba(255,170,40,.4);color:#ffca6b;font-size:12px;padding:6px 16px;border-radius:999px}
+#err{display:none;margin-top:18px;color:#ff7b7b;font-size:13px}
+#err a{color:#ffca6b}
+</style>
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+</head>
+<body>
+<div class="box">
+  <div class="spin"></div>
+  <h1>Opening sandbox checkout…</h1>
+  <p>Preview product · $1.00 · test card accepted:<br><b style="color:#c3cad2">4242 4242 4242 4242 · 12/34 · 100</b></p>
+  <p id="err">Checkout didn't open? <a href="#" onclick="Paddle.Checkout.open({items:[{priceId:'pri_01m6w50rp8kafzwx00z0cxnt15',quantity:1}]});return false">Click here to open it manually</a>.</p>
+  <span class="badge">SANDBOX · no real money</span>
+</div>
+<script>
+Paddle.Environment.set("sandbox");
+Paddle.Initialize({
+  token: "test_462943a1f8a77701946927d2c01",
+  eventCallback: function(ev){
+    if (ev.name === "checkout.failed") {
+      document.getElementById("err").style.display = "block";
+    }
+  }
+});
+Paddle.Checkout.open({
+  items: [{ priceId: "pri_01m6w50rp8kafzwx00z0cxnt15", quantity: 1 }],
+  settings: { displayMode: "overlay", theme: "light", allowLogout: false }
+});
+setTimeout(function(){ document.getElementById("err").style.display = "block"; }, 6000);
+</script>
+</body>
+</html>
