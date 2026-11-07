@@ -222,6 +222,12 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
       <div class="card"><span class="ic">✉️</span><h3>Email support</h3><p>remmyhubsupport@gmail.com<br>For orders, keys and refunds.</p></div>
       <div class="card"><span class="ic">💬</span><h3>Discord community</h3><p>discord.gg/FGKzwuQFQB<br>Tickets, announcements & help.</p></div>
       <div class="card"><span class="ic">📄</span><h3>Legal & policies</h3><p><a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a> · <a href="refund.html">Refund Policy</a></p></div>
+      <div class="card" style="grid-column:1/-1"><span class="ic">🔑</span><h3>Lost your key? Find it instantly</h3><p>Enter the email you used at checkout and your license key appears here.</p>
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+          <input id="kmail" type="email" placeholder="Your checkout email" style="flex:1;min-width:200px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:#e8eaf0;font-family:inherit;font-size:13px">
+          <button onclick="getkey()" style="background:rgba(58,214,181,.15);border:1px solid rgba(58,214,181,.4);color:#7de8cf;border-radius:10px;padding:12px 18px;font-family:inherit;font-size:13px;cursor:pointer">Find my key</button>
+        </div>
+        <p id="kres" style="margin-top:12px;font-size:13px;color:#7de8cf;word-break:break-all;user-select:all"></p></div>
     </div>
   </div>
 
@@ -243,6 +249,20 @@ document.querySelectorAll('.q button').forEach(b=>{
 });
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+<script>
+async function getkey(){
+  var m=document.getElementById("kmail").value.trim().toLowerCase();
+  var r=document.getElementById("kres");
+  if(!m||m.indexOf("@")<0){r.style.color="#ff7b7b";r.textContent="Enter the email you used at checkout.";return}
+  r.style.color="#8b959e";r.textContent="Checking...";
+  try{
+    var w=await fetch("https://remmy-mint.mrsadii.workers.dev/getkey?email="+encodeURIComponent(m));
+    var j=await w.json();
+    if(j.found){r.style.color="#7de8cf";r.textContent="Your key: "+j.key}
+    else{r.style.color="#ff9b7b";r.textContent="No key found for that email yet - if you just paid, try again in a minute or contact support."}
+  }catch(e){r.style.color="#ff7b7b";r.textContent="Could not reach the key server - try again."}
+}
 </script>
 </body>
 </html>
