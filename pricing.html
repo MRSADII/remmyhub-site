@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pricing — Remmy HUB</title>
-<meta name="description" content="Remmy HUB pricing — lifetime access and subscription plans for the all-in-one Roblox utility tool. Instant automatic delivery.">
+<meta name="description" content="Remmy HUB pricing — weekly, monthly and yearly plans for the all-in-one Roblox utility tool. Instant automatic delivery, cancel anytime.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -30,14 +30,15 @@ a{color:#3ad6b5;text-decoration:none}
 .navlinks a{color:#aab2bd;font-size:13.5px;transition:color .2s}
 .navlinks a:hover{color:#3ad6b5}
 .navlinks a.act{color:#3ad6b5}
-.wrap{max-width:1000px;margin:0 auto;padding:0 20px 60px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
 h1{font-size:clamp(30px,4.6vw,44px);color:#f8fafc;margin:34px 0 8px;text-align:center;font-weight:800}
-p.sub{color:#aab4be;text-align:center;font-size:15px;max-width:560px;margin:0 auto 8px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;max-width:900px;margin:30px auto 0;align-items:stretch}
+p.sub{color:#aab4be;text-align:center;font-size:15px;max-width:620px;margin:0 auto 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;max-width:1080px;margin:30px auto 0;align-items:stretch}
 .plan{position:relative;background:linear-gradient(165deg,rgba(30,37,46,.8),rgba(15,20,26,.9));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;transition:transform .25s,border-color .25s,box-shadow .25s}
 .plan:hover{transform:translateY(-6px)}
 .plan.hot{border-color:rgba(58,214,181,.5);box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px rgba(58,214,181,.2)}
-.plan .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(110deg,#ffd65c,#ff961e,#ffd65c);color:#201604;font-weight:800;font-size:11px;letter-spacing:1px;padding:5px 16px;border-radius:999px;white-space:nowrap}
+.plan .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(110deg,#3ad6b5,#57e8c6,#3ad6b5);color:#0a1916;font-weight:800;font-size:11px;letter-spacing:1px;padding:5px 16px;border-radius:999px;white-space:nowrap}
+.plan .tag.gold{background:linear-gradient(110deg,#ffd65c,#ff961e,#ffd65c);color:#201604}
 .plan h2{font-size:17px;color:#f0f3f6;margin-bottom:4px}
 .plan .pdesc{font-size:13px;color:#8b959e;margin-bottom:18px}
 .plan .price{font-size:38px;font-weight:800;color:#3ad6b5}
@@ -45,24 +46,20 @@ p.sub{color:#aab4be;text-align:center;font-size:15px;max-width:560px;margin:0 au
 .plan ul{list-style:none;margin:18px 0 22px;flex:1}
 .plan ul li{font-size:13.5px;color:#c3cad2;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .plan ul li::before{content:"✓";color:#3ad6b5;font-weight:700;margin-right:10px}
-.plan ul li.off{color:#5c656e}
-.plan ul li.off::before{content:"–";color:#5c656e}
 .plan .cta{display:block;text-align:center;font-weight:700;font-size:15px;padding:14px;border-radius:12px;background:#3ad6b5;color:#0a1916;transition:background .2s,transform .2s}
 .plan .cta:hover{background:#57e8c6;transform:translateY(-2px)}
-.plan .cta.soon{background:rgba(255,255,255,.06);color:#8b959e;cursor:not-allowed}
-.plan .cta.soon:hover{transform:none}
-.soonbadge{display:inline-block;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#8b959e;font-size:11px;padding:4px 12px;border-radius:999px;margin-bottom:14px}
-.payrow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;margin:34px auto 0;max-width:640px}
+.savebadge{display:inline-block;background:rgba(58,214,181,.12);border:1px solid rgba(58,214,181,.35);color:#7de8cf;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:999px;margin-bottom:14px}
+.payrow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;margin:40px auto 0;max-width:640px}
 .pay{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:11px;padding:9px 14px;height:40px}
 .pay svg{display:block;height:20px;width:auto}
 .pay .wt{font-weight:700;font-size:13.5px;color:#fff;letter-spacing:.5px}
 .pay .gp{font-size:13.5px;color:#c3cad2}
-.assure{max-width:640px;margin:26px auto 0;text-align:center;font-size:12.5px;color:#7d8790}
+.assure{max-width:680px;margin:26px auto 0;text-align:center;font-size:12.5px;color:#7d8790}
 .assure a{color:#9aa4ad}
 .footer{border-top:1px solid rgba(255,255,255,.06);margin-top:70px;padding:34px 20px;text-align:center;font-size:12.5px;color:#7d8790;background:rgba(10,13,17,.5)}
 .footer a{color:#9aa4ad;margin:0 10px;transition:color .2s}
 .footer a:hover{color:#3ad6b5}
-@media(max-width:680px){.grid{grid-template-columns:1fr}}
+@media(max-width:900px){.grid{grid-template-columns:1fr;max-width:420px}}
 </style>
 </head>
 <body>
@@ -73,6 +70,7 @@ p.sub{color:#aab4be;text-align:center;font-size:15px;max-width:560px;margin:0 au
   <div class="navlinks">
     <a href="index.html">Home</a>
     <a href="index.html#features">Features</a>
+    <a href="index.html#games">Games</a>
     <a href="pricing.html" class="act">Pricing</a>
     <a href="index.html#faq">FAQ</a>
     <a href="index.html#contact">Contact</a>
@@ -82,40 +80,52 @@ p.sub{color:#aab4be;text-align:center;font-size:15px;max-width:560px;margin:0 au
 <div class="wrap">
 
   <h1 class="rv on">Pricing</h1>
-  <p class="sub rv on">Simple, transparent plans. Every plan includes all features, all supported games, and all future updates.</p>
+  <p class="sub rv on">Weekly, monthly or yearly — every plan includes all premium features, all supported games, and every future update. Cancel anytime.</p>
 
   <div class="grid">
 
-    <div class="plan hot rv on">
-      <span class="tag">BEST VALUE</span>
-      <h2>Lifetime Access</h2>
-      <p class="pdesc">One payment. Permanent premium access to Remmy HUB.</p>
-      <div class="price">$3.99 <span>one-time</span></div>
+    <div class="plan rv on">
+      <span class="tag gold" style="display:flex;justify-content:center">FLEXIBLE</span>
+      <h2>Weekly</h2>
+      <p class="pdesc">Short bursts, no commitment.</p>
+      <div class="price">$1.99 <span>per week</span></div>
       <ul>
         <li>All premium features, all supported games</li>
-        <li>License never expires</li>
+        <li>Instant automatic key delivery</li>
+        <li>All future updates included</li>
+        <li>Cancel anytime</li>
+      </ul>
+      <a class="cta" href="checkout.html?price=pri_01m6x0fa94a2w15csapwdj8sjb">Get Weekly</a>
+    </div>
+
+    <div class="plan hot rv on">
+      <span class="tag" style="display:flex;justify-content:center">MOST POPULAR</span>
+      <h2>Monthly</h2>
+      <p class="pdesc">The standard plan — full month of premium.</p>
+      <div class="price">$6.99 <span>per month</span></div>
+      <ul>
+        <li>All premium features, all supported games</li>
         <li>Instant automatic key delivery</li>
         <li>All future updates included</li>
         <li>Priority support</li>
-        <li>No renewals, no subscriptions</li>
+        <li>Cancel anytime</li>
       </ul>
-      <a class="cta" href="checkout.html">Get Lifetime Access</a>
-      <p style="text-align:center;font-size:12px;color:#8b959e;margin-top:10px">or <a href="https://remmy.mysellauth.com/product/remmy-hub-premium-lifetime" style="color:#3ad6b5">pay with crypto</a></p>
+      <a class="cta" href="checkout.html?price=pri_01m6x0gwfhtdpqkdgb5k0vrksx">Get Monthly</a>
     </div>
 
     <div class="plan rv on">
-      <span class="soonbadge">COMING SOON</span>
-      <h2>Subscription</h2>
-      <p class="pdesc">All the same premium features on a recurring basis.</p>
-      <div class="price">TBA <span>per month</span></div>
+      <span class="savebadge">SAVE 40%</span>
+      <h2>Yearly</h2>
+      <p class="pdesc">Best rate for long-term users — just $4.17/month.</p>
+      <div class="price">$49.99 <span>per year</span></div>
       <ul>
         <li>All premium features, all supported games</li>
         <li>Instant automatic key delivery</li>
-        <li>Cancel anytime</li>
         <li>All future updates included</li>
-        <li class="off">Lower lifetime price</li>
+        <li>Priority support</li>
+        <li>Cancel anytime</li>
       </ul>
-      <span class="cta soon">Coming Soon</span>
+      <a class="cta" href="checkout.html?price=pri_01m6x0p7f10sz28nkw8gw9114g">Get Yearly</a>
     </div>
 
   </div>
@@ -125,11 +135,9 @@ p.sub{color:#aab4be;text-align:center;font-size:15px;max-width:560px;margin:0 au
     <span class="pay"><svg viewBox="0 0 36 22" height="16"><circle cx="13" cy="11" r="9" fill="#EB001B"/><circle cx="23" cy="11" r="9" fill="#F79E1B" fill-opacity="0.92"/></svg><span class="wt">Mastercard</span></span>
     <span class="pay"><svg viewBox="0 0 24 24" height="18"><path fill="#fff" d="M16.365 1.43c0 1.14-.47 2.2-1.22 3.05-.8.9-2.1 1.6-3.2 1.5-.14-1.1.42-2.3 1.15-3.06.8-.9 2.2-1.55 3.27-1.5zM20.94 17.1c-.57 1.3-.85 1.88-1.6 3.03-1.04 1.6-2.5 3.6-4.32 3.6-1.6.02-2-1.05-4.2-1.04-2.18.01-2.64 1.07-4.24 1.05-1.82-.02-3.2-1.8-4.24-3.4C1.06 14.9.55 9.3 2.7 6.9c1-1.4 2.6-2.2 4.1-2.2 1.5 0 2.5.8 3.8.8 1.2 0 2-.8 3.7-.8 1.3 0 2.7.7 3.7 1.9-3.2 1.8-2.7 6.4.05 7.7-.55 1.3-.55 1.3-.51 1.4z"/></svg><span class="wt">Pay</span></span>
     <span class="pay"><svg viewBox="0 0 24 24" height="18"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09c.95-2.85 3.6-4.96 6.73-4.96z"/></svg><span class="gp">Pay</span></span>
-    <span class="pay"><svg viewBox="0 0 32 32" height="20"><circle cx="16" cy="16" r="16" fill="#F7931A"/><text x="16" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="800" fill="#fff">₿</text></svg><span class="wt">Bitcoin</span></span>
-    <span class="pay"><svg viewBox="0 0 32 32" height="20"><circle cx="16" cy="16" r="16" fill="#345D9D"/><text x="16" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="800" fill="#fff">Ł</text></svg><span class="wt">Litecoin</span></span>
   </div>
 
-  <p class="assure rv">Instant automatic delivery · 14-day refund policy on activation failures · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="refund.html">Refunds</a></p>
+  <p class="assure rv">Instant automatic delivery · Cancel anytime — access stays active until the end of your billing period · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="refund.html">Refunds</a></p>
 
 </div>
 
