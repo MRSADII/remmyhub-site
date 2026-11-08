@@ -21,7 +21,7 @@ a{color:#3ad6b5}
 </head>
 <body>
 <div class="box">
-  <div class="spin"></div>
+  <div class="spin" id="spinbox"></div>
   <h1>Secure checkout</h1>
   <p id="planline">Remmy HUB — Premium · loading your plan…<br>Card, Apple Pay, Google Pay & PayPal accepted.<br>After payment, your license key is emailed to you automatically.</p>
   <div style="display:flex;justify-content:center;margin:18px 0 4px"><div class="cf-turnstile" data-sitekey="0x4AAAAAAF4hgZFEOEa4Me01" data-theme="dark" data-callback="onVerified"></div></div>
@@ -48,6 +48,8 @@ var priceId = params.get("price") || "pri_01m6x0gwfhtdpqkdgb5k0vrksx";
 var meta = PRICES[priceId] || PRICES["pri_01m6x0gwfhtdpqkdgb5k0vrksx"];
 document.getElementById("planline").innerHTML = "Remmy HUB — <b>" + meta.name + "</b> · " + meta.amount + " " + meta.suffix + "<br>Card, Apple Pay, Google Pay & PayPal accepted.<br>After payment, your license key is emailed to you automatically.";
 window.openCheckout = function(){
+  var sb = document.getElementById("spinbox");
+  if (sb) sb.style.display = "none";
   Paddle.Checkout.open({
     items: [{ priceId: priceId, quantity: 1 }],
     settings: { displayMode: "overlay", theme: "dark", allowLogout: false }
