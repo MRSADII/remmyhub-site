@@ -257,9 +257,9 @@ async function getkey(){
   if(!m||m.indexOf("@")<0){r.style.color="#ff7b7b";r.textContent="Enter the email you used at checkout.";return}
   r.style.color="#8b959e";r.textContent="Checking...";
   try{
-    var w=await fetch("https://remmy-mint.mrsadii.workers.dev/getkey?email="+encodeURIComponent(m));
+    var w=await fetch("https://remmy-mint.mrsadii.workers.dev/getkey",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:m})});
     var j=await w.json();
-    if(j.found){r.style.color="#7de8cf";r.textContent="Your key: "+j.key}
+    if(j.sent){r.style.color="#7de8cf";r.textContent="Your key has been sent to "+m+" — check your inbox!"}
     else{r.style.color="#ff9b7b";r.textContent="No key found for that email yet - if you just paid, try again in a minute or contact support."}
   }catch(e){r.style.color="#ff7b7b";r.textContent="Could not reach the key server - try again."}
 }
