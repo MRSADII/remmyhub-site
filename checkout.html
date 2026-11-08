@@ -16,6 +16,7 @@ a{color:#3ad6b5}
 .badge{display:inline-block;margin-top:26px;background:rgba(58,214,181,.12);border:1px solid rgba(58,214,181,.35);color:#7de8cf;font-size:12px;padding:6px 16px;border-radius:999px}
 #err{display:none;margin-top:18px;color:#ff7b7b;font-size:13px}
 </style>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 </head>
 <body>
@@ -23,7 +24,8 @@ a{color:#3ad6b5}
   <div class="spin"></div>
   <h1>Secure checkout</h1>
   <p id="planline">Remmy HUB — Premium · loading your plan…<br>Card, Apple Pay, Google Pay & PayPal accepted.<br>After payment, your license key is emailed to you automatically.</p>
-  <p id="err">Checkout didn't open? <a href="#" onclick="Paddle.Checkout.open({items:[{priceId:priceId,quantity:1}]});return false">Click here to open it manually</a>.</p>
+  <div style="display:flex;justify-content:center;margin:18px 0 4px"><div class="cf-turnstile" data-sitekey="0x4AAAAAAF4hgZFEOEa4Me01" data-theme="dark" data-callback="onVerified"></div></div>
+  <p id="err" style="display:none">Checkout didn't open? <a href="#" onclick="openCheckout();return false">Click here to open it manually</a>.</p>
   <span class="badge">🔒 Secured by Paddle · sold from remmyhub.store</span>
 </div>
 <script>
@@ -45,11 +47,20 @@ var params = new URLSearchParams(window.location.search);
 var priceId = params.get("price") || "pri_01m6x0gwfhtdpqkdgb5k0vrksx";
 var meta = PRICES[priceId] || PRICES["pri_01m6x0gwfhtdpqkdgb5k0vrksx"];
 document.getElementById("planline").innerHTML = "Remmy HUB — <b>" + meta.name + "</b> · " + meta.amount + " " + meta.suffix + "<br>Card, Apple Pay, Google Pay & PayPal accepted.<br>After payment, your license key is emailed to you automatically.";
-Paddle.Checkout.open({
-  items: [{ priceId: priceId, quantity: 1 }],
-  settings: { displayMode: "overlay", theme: "dark", allowLogout: false }
-});
-setTimeout(function(){ document.getElementById("err").style.display = "block"; }, 6000);
+window.openCheckout = function(){
+  Paddle.Checkout.open({
+    items: [{ priceId: priceId, quantity: 1 }],
+    settings: { displayMode: "overlay", theme: "dark", allowLogout: false }
+  });
+};
+var tsWait = setInterval(function(){
+  if (window.turnstile && document.querySelector(".cf-turnstile iframe")) {
+    clearInterval(tsWait);
+    document.getElementById("tslabel").textContent = "Quick human check - then your checkout opens:";
+  }
+}, 400);
+window.onVerified = function(){ openCheckout(); };
+setTimeout(function(){ if (!window._tsdone) document.getElementById("err").style.display = "block"; }, 9000);
 </script>
 </body>
 </html>
