@@ -263,8 +263,10 @@ async function getkey(){
   try{
     var w=await fetch("https://remmyhub.store/api/getkey",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:m,turnstile:tok})});
     var j=await w.json();
-    if(j.sent){r.style.color="#7de8cf";r.textContent="Your key has been sent to "+m+" — check your inbox!"}
-    else{r.style.color="#ff9b7b";r.textContent="No key found for that email yet - if you just paid, try again in a minute or contact support."}
+    if(j.sent){r.style.color="#7de8cf";r.textContent="Your key has been sent to "+m+" — check your inbox!";}
+    else if(w.status===403){r.style.color="#ff9b7b";r.textContent="Verification expired - complete the check and try again.";}
+    else{r.style.color="#ff9b7b";r.textContent="No key found for that email yet - if you just paid, contact support.";}
+    if(window.turnstile){try{turnstile.reset()}catch(e){}}
   }catch(e){r.style.color="#ff7b7b";r.textContent="Could not reach the key server - try again."}
 }
 </script>
