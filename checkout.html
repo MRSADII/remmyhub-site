@@ -37,7 +37,7 @@ Paddle.Initialize({
   }
 });
 var params = new URLSearchParams(window.location.search);
-var priceId = params.get("price") || "pri_01m6tx9gfcnbcsjjha2s7qfffy";
+var priceId = params.get("price") || "pri_01m6x0gwfhtdpqkdgb5k0vrksx";
 Paddle.Checkout.open({
   items: [{ priceId: priceId, quantity: 1 }],
   settings: { displayMode: "overlay", theme: "dark", allowLogout: false }
