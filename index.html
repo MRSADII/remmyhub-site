@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Remmy HUB — Premium Utility for Roblox</title>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=remmyTSInit&render=explicit" async defer></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <meta name="description" content="Remmy HUB — all-in-one utility script tool for Roblox. Weekly, monthly and yearly plans with instant automatic delivery, Discord redemption and priority support.">
 <style>
@@ -223,13 +224,23 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
       <div class="card"><span class="ic">✉️</span><h3>Email support</h3><p>remmyhubsupport@gmail.com<br>For orders, keys and refunds.</p></div>
       <div class="card"><span class="ic">💬</span><h3>Discord community</h3><p>discord.gg/FGKzwuQFQB<br>Tickets, announcements & help.</p></div>
       <div class="card"><span class="ic">📄</span><h3>Legal & policies</h3><p><a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a> · <a href="refund.html">Refund Policy</a></p></div>
-      <div class="card" style="grid-column:1/-1"><span class="ic">🔑</span><h3>Lost your key? Find it instantly</h3><p>Enter the email you used at checkout and your license key appears here.</p>
-        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;justify-content:center">
-          <input id="kmail" type="email" placeholder="Your checkout email" style="flex:1;min-width:200px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:#e8eaf0;font-family:inherit;font-size:13px">
+            <div class="card" style="grid-column:1/-1;padding:0;overflow:hidden"><span class="ic">🔑</span><h3>Key support</h3><p style="margin-bottom:14px">Lost your key, or want to check its status? Both here.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div>
+            <p style="font-size:12.5px;color:#9aa4ad;margin:0 0 8px"><b style="color:#e8eaf0">Lost your key?</b><br>We'll re-send it to your inbox.</p>
+            <input id="kmail" type="email" placeholder="Your checkout email" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:#e8eaf0;font-family:inherit;font-size:13px">
+            <button onclick="resendKey()" style="width:100%;margin-top:10px;background:rgba(58,214,181,.15);border:1px solid rgba(58,214,181,.4);color:#7de8cf;border-radius:10px;padding:12px;font-family:inherit;font-size:13px;cursor:pointer">Re-send my key</button>
+          </div>
+          <div>
+            <p style="font-size:12.5px;color:#9aa4ad;margin:0 0 8px"><b style="color:#e8eaf0">Check key status</b><br>Paste your key to see its live state.</p>
+            <input id="skey" placeholder="Paste your key (PREM-...)" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:#e8eaf0;font-family:inherit;font-size:13px">
+            <button onclick="checkStatus()" style="width:100%;margin-top:10px;background:rgba(58,214,181,.15);border:1px solid rgba(58,214,181,.4);color:#7de8cf;border-radius:10px;padding:12px;font-family:inherit;font-size:13px;cursor:pointer">Check status</button>
+          </div>
         </div>
-        <div style="display:flex;justify-content:center;margin-top:10px"><div class="cf-turnstile" data-sitekey="0x4AAAAAAF4hgZFEOEa4Me01" data-theme="dark"></div></div>
-        <div style="display:flex;justify-content:center;margin-top:10px"><button onclick="getkey()" style="background:rgba(58,214,181,.15);border:1px solid rgba(58,214,181,.4);color:#7de8cf;border-radius:10px;padding:12px 24px;font-family:inherit;font-size:13px;cursor:pointer">Find my key</button></div>
-        <p id="kres" style="margin-top:12px;font-size:13px;color:#7de8cf;word-break:break-all;user-select:all"></p></div>
+        <div style="display:flex;justify-content:center;margin-top:14px"><div id="tsbox"></div></div>
+        <p style="text-align:center;font-size:11px;color:#5c656e;margin:6px 0 0">Protected by Cloudflare Turnstile</p>
+        <div id="kres" style="margin-top:12px;font-size:13px;color:#7de8cf;word-break:break-word"></div>
+        <div id="sres" style="margin-top:10px;font-size:13px;color:#8b959e"></div></div>
       <div class="card" style="grid-column:1/-1"><span class="ic">📋</span><h3>Check key status</h3><p>Enter your checkout email to see your key's live status — active with time remaining, expired or revoked. Keys are partially hidden for your security.</p>
         <input id="smail" type="email" placeholder="Your checkout email" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:#e8eaf0;font-family:inherit;font-size:13px">
         <div style="display:flex;justify-content:center;margin-top:10px"><div class="cf-turnstile" data-sitekey="0x4AAAAAAF4hgZFEOEa4Me01" data-theme="dark" data-callback="tsStatus"></div></div>
@@ -317,6 +328,45 @@ async function getkey(){
     else{r.style.color="#ff9b7b";r.textContent="No key found for that email yet - if you just paid, contact support.";}
     if(window.turnstile){try{turnstile.reset()}catch(e){}}
   }catch(e){r.style.color="#ff7b7b";r.textContent="Could not reach the key server - try again."}
+}
+</script>
+<script>
+var tsWidget = null, tsFindTok = "", tsStatusTok = "";
+window.remmyTSInit = function(){
+  tsWidget = turnstile.render("#tsbox", { sitekey: "0x4AAAAAAF4hgZFEOEa4Me01", theme: "dark", callback: function(tok){ tsFindTok = tok; tsStatusTok = tok; } });
+};
+function tsReset(){ tsFindTok = ""; tsStatusTok = ""; try { turnstile.reset(tsWidget) } catch(e){} }
+async function resendKey(){
+  var m = document.getElementById("kmail").value.trim().toLowerCase();
+  var r = document.getElementById("kres");
+  if (!m || m.indexOf("@") < 0) { r.innerHTML = '<span class="err">Enter your checkout email.</span>'; return }
+  if (!tsFindTok) { r.innerHTML = '<span class="err">Complete the verification first.</span>'; return }
+  r.innerHTML = 'Checking...';
+  try {
+    var w = await fetch("/api/getkey", { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({ email: m, turnstile: tsFindTok }) });
+    var j = await w.json();
+    if (j.sent) { r.innerHTML = '<span class="ok">Your key has been sent to ' + m + ' — check your inbox!</span>'; }
+    else if (w.status === 429 && j.cooldown) { var secs = j.cooldown; r.innerHTML = '<span class="kd">Cooldown: ' + secs + 's — your key was already sent.</span>'; var iv = setInterval(function(){ secs--; if(secs<=0){clearInterval(iv); r.innerHTML = 'Cooldown over — try again.';} else { r.innerHTML = '<span class="kd">Cooldown: ' + secs + 's</span>'; } }, 1000); }
+    else if (w.status === 403) { r.innerHTML = '<span class="err">Verification expired - complete the check again.</span>'; }
+    else { r.innerHTML = '<span class="err">No key found for that email yet - if you just paid, contact support.</span>'; }
+    tsReset();
+  } catch(e){ r.innerHTML = '<span class="err">Could not reach the key server - try again.</span>'; }
+}
+async function checkStatus(){
+  var kv = document.getElementById("skey").value.trim();
+  var r = document.getElementById("sres");
+  if (!kv) { r.innerHTML = '<span class="err">Paste your key first.</span>'; return }
+  if (!tsStatusTok) { r.innerHTML = '<span class="err">Complete the verification first.</span>'; return }
+  r.innerHTML = 'Checking...';
+  try {
+    var w = await fetch("/api/status", { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({ key: kv, turnstile: tsStatusTok }) });
+    var j = await w.json();
+    if (!j.found) { r.innerHTML = '<span class="err">Key not found - check it and try again.</span>'; return }
+    r.innerHTML = '<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;margin-top:8px;text-align:left">'
+      + '<div style="font-size:12px;color:#8b959e">' + (j.plan || "Remmy HUB") + '</div>'
+      + '<div style="font-size:13px;color:#c3cad2;user-select:all">' + (j.masked || "") + '</div>'
+      + '<div style="font-size:13px;font-weight:700;color:' + (j.color || "#7de8cf") + '">' + (j.status || "") + '</div></div>';
+  } catch(e){ r.innerHTML = '<span class="err">Could not reach the status server - try again.</span>'; }
 }
 </script>
 </body>
