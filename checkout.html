@@ -22,7 +22,7 @@ a{color:#3ad6b5}
 <div class="box">
   <div class="spin"></div>
   <h1>Secure checkout</h1>
-  <p>Remmy HUB — Premium (Lifetime) · $3.99 one-time<br>Card, Apple Pay, Google Pay & PayPal accepted.<br>After payment, your license key is emailed to you automatically.</p>
+  <p id="planline">Remmy HUB — Premium · loading your plan…<br>Card, Apple Pay, Google Pay & PayPal accepted.<br>After payment, your license key is emailed to you automatically.</p>
   <p id="err">Checkout didn't open? <a href="#" onclick="Paddle.Checkout.open({items:[{priceId:priceId,quantity:1}]});return false">Click here to open it manually</a>.</p>
   <span class="badge">🔒 Secured by Paddle · sold from remmyhub.store</span>
 </div>
@@ -36,8 +36,15 @@ Paddle.Initialize({
     }
   }
 });
+var PRICES = {
+  "pri_01m6x0fa94a2w15csapwdj8sjb": { name: "Weekly Access", amount: "$1.99", suffix: "per week" },
+  "pri_01m6x0gwfhtdpqkdgb5k0vrksx": { name: "Monthly Access", amount: "$6.99", suffix: "per month" },
+  "pri_01m6x0p7f10sz28nkw8gw9114g": { name: "Yearly Access", amount: "$49.99", suffix: "per year" }
+};
 var params = new URLSearchParams(window.location.search);
 var priceId = params.get("price") || "pri_01m6x0gwfhtdpqkdgb5k0vrksx";
+var meta = PRICES[priceId] || PRICES["pri_01m6x0gwfhtdpqkdgb5k0vrksx"];
+document.getElementById("planline").innerHTML = "Remmy HUB — <b>" + meta.name + "</b> · " + meta.amount + " " + meta.suffix + "<br>Card, Apple Pay, Google Pay & PayPal accepted.<br>After payment, your license key is emailed to you automatically.";
 Paddle.Checkout.open({
   items: [{ priceId: priceId, quantity: 1 }],
   settings: { displayMode: "overlay", theme: "dark", allowLogout: false }
