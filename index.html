@@ -365,6 +365,7 @@ async function checkStatus(){
     var w=await fetch("/api/status",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({key:kv,turnstile:tsTok})});
     var j=await w.json();
     if(w.status===403){r.innerHTML='<span class="warn">Verification expired — complete the check and try again.</span>';}
+    else if(w.status===400){r.innerHTML='<span class="warn">Verification not ready — let the checkbox finish, then try again.</span>';}
     else if(!j.found){r.innerHTML='<span class="warn">Key not found — check it and try again.</span>';}
     else{
       r.innerHTML='<div class="kcard">'
