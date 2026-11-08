@@ -4,14 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Remmy HUB — Premium Utility for Roblox</title>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=remmyTSInit&render=explicit" async defer></script>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090d'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='36' font-weight='800' fill='%233ad6b5' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#07090d">
 <meta name="description" content="Remmy HUB — all-in-one utility script tool for Roblox. Weekly, monthly and yearly plans with instant automatic delivery, Discord redemption and priority support.">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=remmyTSInit&render=explicit" async defer></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:#07090d;color:#e8eaf0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.65;overflow-x:hidden}
 a{color:#3ad6b5;text-decoration:none}
+::selection{background:rgba(58,214,181,.35);color:#fff}
 .aur{position:fixed;inset:-20%;z-index:-3;background:
  radial-gradient(45% 42% at 18% 22%,rgba(58,214,181,.20),transparent 62%),
  radial-gradient(42% 40% at 82% 12%,rgba(88,101,242,.18),transparent 62%),
@@ -31,7 +33,8 @@ a{color:#3ad6b5;text-decoration:none}
 .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
 .rv.on{opacity:1;transform:translateY(0)}
 .nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;max-width:1000px;margin:0 auto;padding:16px 22px;background:rgba(10,13,17,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06);border-radius:0 0 18px 18px}
-.logo{font-weight:700;font-size:20px;color:#fff}
+.logo{font-weight:700;font-size:20px;color:#fff;display:flex;align-items:center;gap:9px}
+.logo .lmark{width:28px;height:28px;border-radius:8px;background:linear-gradient(140deg,#7de8cf,#3ad6b5);display:flex;align-items:center;justify-content:center;font-weight:800;color:#0a1916;font-size:15px;box-shadow:0 4px 14px rgba(58,214,181,.4)}
 .logo span{color:#3ad6b5}
 .navlinks{display:flex;gap:18px;flex-wrap:wrap}
 .navlinks a{color:#aab2bd;font-size:13.5px;transition:color .2s}
@@ -42,12 +45,19 @@ a{color:#3ad6b5;text-decoration:none}
  box-shadow:0 30px 80px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06)}
 .hero::before{content:"";position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:560px;height:280px;border-radius:50%;background:radial-gradient(closest-side,rgba(58,214,181,.15),transparent);filter:blur(30px);pointer-events:none}
 .hero>*{position:relative}
+.orb{position:absolute;border-radius:50%;filter:blur(46px);pointer-events:none;opacity:.5}
+.orb.o1{width:190px;height:190px;background:rgba(58,214,181,.22);top:-50px;left:-40px;animation:float1 9s ease-in-out infinite alternate}
+.orb.o2{width:150px;height:150px;background:rgba(88,101,242,.24);bottom:-40px;right:-30px;animation:float2 11s ease-in-out infinite alternate}
+.orb.o3{width:110px;height:110px;background:rgba(255,170,40,.16);top:40%;right:12%;animation:float1 13s ease-in-out infinite alternate-reverse}
+@keyframes float1{from{transform:translate(0,0)}to{transform:translate(36px,26px)}}
+@keyframes float2{from{transform:translate(0,0)}to{transform:translate(-30px,-22px)}}
 .badge{display:inline-block;background:linear-gradient(110deg,#ffd65c,#ff961e,#ffd65c);background-size:200%;color:#201604;font-weight:800;font-size:12px;padding:6px 16px;border-radius:999px;letter-spacing:1.5px;animation:shine 3s linear infinite}
 @keyframes shine{to{background-position:200% 0}}
 h1{font-size:clamp(32px,5.6vw,54px);line-height:1.08;margin:18px auto 10px;max-width:740px;font-weight:800}
 h1 .grad{background:linear-gradient(90deg,#3ad6b5,#9be8ff,#ffd65c,#3ad6b5);background-size:280% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 7s linear infinite}
 @keyframes flow{to{background-position:280% 0}}
 .hero p.sub{color:#aab4be;font-size:clamp(14px,2vw,16.5px);max-width:600px;margin:0 auto}
+.planline{margin-top:14px;font-size:13.5px;color:#8b959e}
 .pricebox{display:inline-flex;align-items:baseline;gap:10px;margin:24px 0 6px;padding:14px 28px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)}
 .price{font-size:44px;font-weight:800;color:#3ad6b5}
 .pricebox span{font-size:13px;color:#9aa4ad;text-align:left}
@@ -63,25 +73,35 @@ h1 .grad{background:linear-gradient(90deg,#3ad6b5,#9be8ff,#ffd65c,#3ad6b5);backg
 .cta.ghost::after{display:none}
 .note{font-size:12px;color:#7d8790;margin-top:16px}
 h2.sec{font-size:clamp(23px,3.2vw,30px);color:#f8fafc;margin:64px 0 8px;text-align:center}
+h2.sec::after{content:"";display:block;width:56px;height:3px;border-radius:3px;margin:12px auto 0;background:linear-gradient(90deg,#3ad6b5,#9be8ff);animation:bar 4s ease-in-out infinite alternate}
+@keyframes bar{from{transform:scaleX(.6)}to{transform:scaleX(1)}}
 p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-.card{position:relative;background:linear-gradient(165deg,rgba(30,37,46,.75),rgba(18,22,28,.85));border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:26px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.card{position:relative;background:linear-gradient(165deg,rgba(30,37,46,.75),rgba(18,22,28,.85));border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:26px;transition:transform .25s,border-color .25s,box-shadow .25s;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity .3s;pointer-events:none;
+ background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(58,214,181,.10),transparent 65%)}
+.card:hover::before{opacity:1}
 .card:hover{transform:translateY(-6px);border-color:rgba(58,214,181,.45);box-shadow:0 18px 44px rgba(0,0,0,.45),0 0 0 1px rgba(58,214,181,.15)}
 .card .ic{font-size:24px;margin-bottom:10px;display:block}
 .card h3{font-size:15.5px;color:#f0f3f6;margin-bottom:8px}
 .card p{font-size:13px;color:#9aa4ad}
 .payrow{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
-.pay{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:9px 14px;height:40px}
+.pay{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:9px 14px;height:40px;transition:border-color .2s,transform .2s}
+.pay:hover{border-color:rgba(58,214,181,.4);transform:translateY(-2px)}
 .pay svg{display:block;height:20px;width:auto}
 .pay .wt{font-weight:700;font-size:13.5px;color:#fff;letter-spacing:.5px}
 .pay .gp{font-size:13.5px;color:#c3cad2}
 .games{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:18px}
-.game{background:linear-gradient(165deg,rgba(58,214,181,.10),rgba(58,214,181,.03));border:1px solid rgba(58,214,181,.25);border-radius:14px;padding:14px 26px;font-weight:600;color:#dff7f0;font-size:14px}
+.game{background:linear-gradient(165deg,rgba(58,214,181,.10),rgba(58,214,181,.03));border:1px solid rgba(58,214,181,.25);border-radius:14px;padding:14px 26px;font-weight:600;color:#dff7f0;font-size:14px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.game:hover{transform:translateY(-4px);border-color:rgba(58,214,181,.55);box-shadow:0 12px 30px rgba(58,214,181,.12)}
 .about{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;align-items:stretch}
 .about .txt{background:linear-gradient(165deg,rgba(30,37,46,.75),rgba(18,22,28,.85));border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:28px}
 .about .txt p{font-size:14px;color:#c3cad2;margin-bottom:12px}
+.about .txt p:last-child{margin-bottom:0}
+.about .txt b{color:#fff}
 .stats{display:grid;grid-template-rows:repeat(4,1fr);gap:10px}
-.stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;justify-content:center}
+.stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;justify-content:center;transition:border-color .25s,transform .25s}
+.stat:hover{border-color:rgba(58,214,181,.35);transform:translateX(4px)}
 .stat b{font-size:20px;color:#3ad6b5}
 .stat span{font-size:11.5px;color:#8b959e}
 .steps{counter-reset:s;max-width:720px;margin:0 auto}
@@ -107,6 +127,31 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
 .contact{margin-top:60px}
 .contact .grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .contact .card p{user-select:all}
+.ks{grid-column:1/-1;padding:0;overflow:hidden}
+.ks-in{position:relative;padding:26px}
+.ks-in::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;padding:1px;
+ background:conic-gradient(from var(--rot,0deg),transparent 8%,rgba(58,214,181,.55),transparent 22%);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+ animation:rot 5s linear infinite}
+@property --rot{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes rot{to{--rot:360deg}}
+.ks h3{display:flex;align-items:center;gap:8px}
+.ks .ksgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+.ks label{display:block;font-size:12.5px;color:#9aa4ad;margin:0 0 8px}
+.ks label b{color:#e8eaf0}
+.ks input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:#e8eaf0;font-family:inherit;font-size:13px;transition:border-color .2s,box-shadow .2s;outline:none}
+.ks input:focus{border-color:rgba(58,214,181,.6);box-shadow:0 0 0 3px rgba(58,214,181,.12)}
+.ks button{width:100%;margin-top:10px;background:rgba(58,214,181,.15);border:1px solid rgba(58,214,181,.4);color:#7de8cf;border-radius:10px;padding:12px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s,transform .2s}
+.ks button:hover{background:rgba(58,214,181,.28);transform:translateY(-1px)}
+.ks .tsrow{display:flex;justify-content:center;margin-top:16px}
+.ks .fine{text-align:center;font-size:11px;color:#5c656e;margin:6px 0 0}
+.res{margin-top:12px;font-size:13px;word-break:break-word}
+.res .ok{color:#7de8cf}
+.res .err{color:#ff7b7b}
+.res .warn{color:#ff9b7b}
+.res .kd{color:#ffca6b}
+.res .mut{color:#8b959e}
+.kcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;margin-top:8px;text-align:left}
 .footer{position:relative;border-top:1px solid rgba(255,255,255,.06);margin-top:70px;padding:34px 20px;text-align:center;font-size:12.5px;color:#7d8790;background:rgba(10,13,17,.5)}
 .footer a{color:#9aa4ad;margin:0 10px;transition:color .2s}
 .footer a:hover{color:#3ad6b5}
@@ -117,6 +162,7 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
  .navlinks a{font-size:12.5px}
  .cta{width:100%;margin:14px 0 0}
  .cta.ghost{margin-bottom:14px}
+ .ks .ksgrid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -124,7 +170,7 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
 <div class="aur"></div><div class="aur2"></div><div class="gridov"></div>
 
 <div class="nav">
-  <div class="logo">Remmy <span>HUB</span></div>
+  <div class="logo"><span class="lmark">R</span>Remmy <span>HUB</span></div>
   <div class="navlinks">
     <a href="index.html#about">About</a>
     <a href="index.html#features">Features</a>
@@ -139,13 +185,14 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
 <div class="wrap">
 
   <div class="hero rv on">
+    <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
     <span class="badge">PREMIUM · FLEXIBLE PLANS</span>
     <h1><span class="grad">Remmy HUB</span><br>All-in-One Utility for Roblox</h1>
     <p class="sub">Remmy HUB enhances your Roblox experience with a full suite of premium tools — flexible weekly, monthly and yearly plans with every feature, every supported game.</p>
-    <p class="planline">Weekly, monthly & yearly plans — see <a href="pricing.html">Pricing</a></p>
+    <p class="planline">Weekly, monthly &amp; yearly plans — see <a href="pricing.html">Pricing</a></p>
     <a class="cta" href="pricing.html">💎 View Pricing Plans</a>
     <a class="cta ghost" href="https://discord.gg/FGKzwuQFQB">Join the Discord</a>
-    <p class="note">Instant automatic delivery · Cards, Apple Pay, Google Pay & crypto accepted</p>
+    <p class="note">Instant automatic delivery · Cards, Apple Pay, Google Pay &amp; crypto accepted</p>
     <div class="payrow">
       <span class="pay"><svg viewBox="0 0 48 16" height="14"><text x="0" y="13" font-family="Arial, sans-serif" font-size="14" font-weight="800" font-style="italic" fill="#ffffff" letter-spacing="1">VISA</text></svg></span>
       <span class="pay"><svg viewBox="0 0 36 22" height="16"><circle cx="13" cy="11" r="9" fill="#EB001B"/><circle cx="23" cy="11" r="9" fill="#F79E1B" fill-opacity="0.92"/></svg><span class="wt">Mastercard</span></span>
@@ -168,7 +215,7 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
       <div class="stat"><b>$6.99</b><span>monthly plan</span></div>
       <div class="stat"><b>3</b><span>plans to choose from</span></div>
       <div class="stat"><b>24/7</b><span>automated delivery</span></div>
-      <div class="stat"><b>3+</b><span>supported games & growing</span></div>
+      <div class="stat"><b>3+</b><span>supported games &amp; growing</span></div>
     </div>
   </div>
 
@@ -180,7 +227,7 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
     <div class="card rv"><span class="ic">🚀</span><h3>Instant Delivery</h3><p>Your license key is generated and delivered automatically right after checkout — 24/7.</p></div>
     <div class="card rv"><span class="ic">🔄</span><h3>All Future Updates</h3><p>Every update and every new supported game — included at no extra cost.</p></div>
     <div class="card rv"><span class="ic">🛡️</span><h3>Priority Support</h3><p>Premium users get fast, direct help from the developer via Discord and email.</p></div>
-    <div class="card rv"><span class="ic">🎨</span><h3>Clean & Simple</h3><p>Custom interface, one-click activation, built to just work.</p></div>
+    <div class="card rv"><span class="ic">🎨</span><h3>Clean &amp; Simple</h3><p>Custom interface, one-click activation, built to just work.</p></div>
   </div>
 
   <h2 class="sec rv" id="games">Supported games</h2>
@@ -213,39 +260,37 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
 
   <div class="final rv">
     <h2>Ready to upgrade?</h2>
-    <p>Weekly, monthly, yearly or just a week — see the plans and pick yours.</p>
+    <p>Weekly, monthly or yearly — see the plans and pick yours.</p>
     <a class="cta" href="pricing.html">View Pricing Plans</a>
   </div>
 
   <div class="contact rv" id="contact">
-    <h2 class="sec" style="margin-top:0">Contact & support</h2>
+    <h2 class="sec" style="margin-top:0">Contact &amp; support</h2>
     <p class="secs">We answer fast — usually within a few hours.</p>
     <div class="grid">
       <div class="card"><span class="ic">✉️</span><h3>Email support</h3><p>remmyhubsupport@gmail.com<br>For orders, keys and refunds.</p></div>
-      <div class="card"><span class="ic">💬</span><h3>Discord community</h3><p>discord.gg/FGKzwuQFQB<br>Tickets, announcements & help.</p></div>
-      <div class="card"><span class="ic">📄</span><h3>Legal & policies</h3><p><a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a> · <a href="refund.html">Refund Policy</a></p></div>
-            <div class="card" style="grid-column:1/-1;padding:0;overflow:hidden"><span class="ic">🔑</span><h3>Key support</h3><p style="margin-bottom:14px">Lost your key, or want to check its status? Both here.</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div class="card"><span class="ic">💬</span><h3>Discord community</h3><p>discord.gg/FGKzwuQFQB<br>Tickets, announcements &amp; help.</p></div>
+      <div class="card"><span class="ic">📄</span><h3>Legal &amp; policies</h3><p><a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a> · <a href="refund.html">Refund Policy</a></p></div>
+      <div class="card ks"><div class="ks-in">
+        <span class="ic">🔑</span><h3>Key support</h3>
+        <p style="margin-bottom:16px">Lost your key, or want to check its status? Both here.</p>
+        <div class="ksgrid">
           <div>
-            <p style="font-size:12.5px;color:#9aa4ad;margin:0 0 8px"><b style="color:#e8eaf0">Lost your key?</b><br>We'll re-send it to your inbox.</p>
-            <input id="kmail" type="email" placeholder="Your checkout email" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:#e8eaf0;font-family:inherit;font-size:13px">
-            <button onclick="resendKey()" style="width:100%;margin-top:10px;background:rgba(58,214,181,.15);border:1px solid rgba(58,214,181,.4);color:#7de8cf;border-radius:10px;padding:12px;font-family:inherit;font-size:13px;cursor:pointer">Re-send my key</button>
+            <label><b>Lost your key?</b><br>We'll re-send it to your inbox.</label>
+            <input id="kmail" type="email" placeholder="Your checkout email" autocomplete="email">
+            <button onclick="resendKey()">Re-send my key</button>
+            <div id="kres" class="res"></div>
           </div>
           <div>
-            <p style="font-size:12.5px;color:#9aa4ad;margin:0 0 8px"><b style="color:#e8eaf0">Check key status</b><br>Paste your key to see its live state.</p>
-            <input id="skey" placeholder="Paste your key (PREM-...)" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:#e8eaf0;font-family:inherit;font-size:13px">
-            <button onclick="checkStatus()" style="width:100%;margin-top:10px;background:rgba(58,214,181,.15);border:1px solid rgba(58,214,181,.4);color:#7de8cf;border-radius:10px;padding:12px;font-family:inherit;font-size:13px;cursor:pointer">Check status</button>
+            <label><b>Check key status</b><br>Paste your key to see its live state.</label>
+            <input id="skey" placeholder="Paste your key (PREM-...)" spellcheck="false">
+            <button onclick="checkStatus()">Check status</button>
+            <div id="sres" class="res"></div>
           </div>
         </div>
-        <div style="display:flex;justify-content:center;margin-top:14px"><div id="tsbox"></div></div>
-        <p style="text-align:center;font-size:11px;color:#5c656e;margin:6px 0 0">Protected by Cloudflare Turnstile</p>
-        <div id="kres" style="margin-top:12px;font-size:13px;color:#7de8cf;word-break:break-word"></div>
-        <div id="sres" style="margin-top:10px;font-size:13px;color:#8b959e"></div></div>
-      <div class="card" style="grid-column:1/-1"><span class="ic">📋</span><h3>Check key status</h3><p>Enter your checkout email to see your key's live status — active with time remaining, expired or revoked. Keys are partially hidden for your security.</p>
-        <input id="smail" type="email" placeholder="Your checkout email" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:#e8eaf0;font-family:inherit;font-size:13px">
-        <div style="display:flex;justify-content:center;margin-top:10px"><div class="cf-turnstile" data-sitekey="0x4AAAAAAF4hgZFEOEa4Me01" data-theme="dark" data-callback="tsStatus"></div></div>
-        <div style="display:flex;justify-content:center;margin-top:10px"><button onclick="checkStatus()" style="background:rgba(58,214,181,.15);border:1px solid rgba(58,214,181,.4);color:#7de8cf;border-radius:10px;padding:12px 24px;font-family:inherit;font-size:13px;cursor:pointer">Check key status</button></div>
-        <div id="sres" style="margin-top:14px"></div></div>
+        <div class="tsrow"><div id="tsbox"></div></div>
+        <p class="fine">Protected by Cloudflare Turnstile</p>
+      </div></div>
     </div>
   </div>
 
@@ -258,115 +303,77 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
 </div>
 
 <script>
-document.querySelectorAll('.q button').forEach(b=>{
-  b.addEventListener('click',()=>{
-    const q=b.parentElement, a=q.querySelector('.a'), open=q.classList.contains('open');
-    document.querySelectorAll('.q.open').forEach(o=>{o.classList.remove('open');o.querySelector('.a').style.maxHeight=null});
+/* FAQ accordion */
+document.querySelectorAll('.q button').forEach(function(b){
+  b.addEventListener('click',function(){
+    var q=b.parentElement,a=q.querySelector('.a'),open=q.classList.contains('open');
+    document.querySelectorAll('.q.open').forEach(function(o){o.classList.remove('open');o.querySelector('.a').style.maxHeight=null});
     if(!open){q.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
   });
 });
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-function tsStatus(tok){ window._tsStatusTok = tok; }
-async function checkStatus(){
-  var m=document.getElementById("smail").value.trim().toLowerCase();
-  var r=document.getElementById("sres");
-  var tok=window._tsStatusTok||"";
-  if(!m||m.indexOf("@")<0){r.innerHTML='<span style="color:#ff7b7b">Enter your checkout email.</span>';return}
-  if(!tok){r.innerHTML='<span style="color:#ff9b7b">Complete the verification first.</span>';return}
-  r.innerHTML='<span style="color:#8b959e">Checking...</span>';
-  try{
-    var w=await fetch("https://remmyhub.store/api/status",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:m,turnstile:tok})});
-    var j=await w.json();
-    if(!j.found){r.innerHTML='<span style="color:#ff9b7b">No keys found for that email.</span>';return}
-    var h="";
-    j.keys.forEach(function(k){
-      h+='<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;margin-top:8px;text-align:left">'
-        +'<div style="font-size:12px;color:#8b959e">'+k.plan+'</div>'
-        +'<div style="font-size:13px;color:#c3cad2;user-select:all">'+k.masked+'</div>'
-        +'<div style="font-size:12.5px;font-weight:600;color:'+k.color+'">'+k.status+'</div></div>';
-    });
-    r.innerHTML=h;
-  }catch(e){r.innerHTML='<span style="color:#ff7b7b">Could not reach the status server - try again.</span>'}
-}
-async function checkStatus(){
-  var m=document.getElementById("smail").value.trim().toLowerCase();
-  var r=document.getElementById("sres");
-  var tok=window._tsStatusTok||"";
-  if(!m||m.indexOf("@")<0){r.innerHTML='<span style="color:#ff7b7b">Enter your checkout email.</span>';return}
-  if(!tok){r.innerHTML='<span style="color:#ff9b7b">Complete the verification first.</span>';return}
-  r.innerHTML='<span style="color:#8b959e">Checking...</span>';
-  try{
-    var w=await fetch("https://remmyhub.store/api/status",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:m,turnstile:tok})});
-    var j=await w.json();
-    if(!j.found){r.innerHTML='<span style="color:#ff9b7b">No keys found for that email.</span>';return}
-    var h="";
-    j.keys.forEach(function(k){
-      h+='<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;margin-top:8px;text-align:left">'
-        +'<div style="font-size:12px;color:#8b959e">'+k.plan+'</div>'
-        +'<div style="font-size:13px;color:#c3cad2;user-select:all">'+k.masked+'</div>'
-        +'<div style="font-size:12.5px;font-weight:600;color:'+k.color+'">'+k.status+'</div></div>';
-    });
-    r.innerHTML=h;
-  }catch(e){r.innerHTML='<span style="color:#ff7b7b">Could not reach the status server - try again.</span>'}
-}
-</script>
-<script>
-async function getkey(){
+
+/* reveal on scroll */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+/* cursor-follow glow on cards */
+document.querySelectorAll('.card').forEach(function(c){
+  c.addEventListener('mousemove',function(e){
+    var r=c.getBoundingClientRect();
+    c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    c.style.setProperty('--my',(e.clientY-r.top)+'px');
+  });
+});
+
+/* Turnstile — one explicit widget, scoped reset */
+var tsWidget=null, tsTok="";
+window.remmyTSInit=function(){
+  tsWidget=turnstile.render("#tsbox",{sitekey:"0x4AAAAAAF4hgZFEOEa4Me01",theme:"dark",callback:function(tok){tsTok=tok}});
+};
+function tsReset(){tsTok="";try{turnstile.reset(tsWidget)}catch(e){}}
+
+/* Lost key -> email re-send (10-min cooldown handled by worker) */
+async function resendKey(){
   var m=document.getElementById("kmail").value.trim().toLowerCase();
   var r=document.getElementById("kres");
-  var tok=(window.turnstile&&turnstile.getResponse())?turnstile.getResponse():"";
-  if(!m||m.indexOf("@")<0){r.style.color="#ff7b7b";r.textContent="Enter the email you used at checkout.";return}
-  if(!tok){r.style.color="#ff9b7b";r.textContent="Complete the verification first.";return}
-  r.style.color="#8b959e";r.textContent="Checking...";
+  if(!m||m.indexOf("@")<0){r.innerHTML='<span class="err">Enter your checkout email.</span>';return}
+  if(!tsTok){r.innerHTML='<span class="warn">Complete the verification first.</span>';return}
+  r.innerHTML='<span class="mut">Checking...</span>';
   try{
-    var w=await fetch("https://remmyhub.store/api/getkey",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:m,turnstile:tok})});
+    var w=await fetch("/api/getkey",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:m,turnstile:tsTok})});
     var j=await w.json();
-    if(j.sent){r.style.color="#7de8cf";r.textContent="Your key has been sent to "+m+" — check your inbox!";}
-    else if(w.status===429&&j.cooldown){var secs=j.cooldown;r.style.color="#ff9b7b";var cd=setInterval(function(){if(secs<=0){clearInterval(cd);r.style.color="#8b959e";r.textContent="Cooldown over — click Find my key again.";return}r.textContent="Cooldown: "+secs+"s — your key was already sent to "+m+".";secs--},1000);return}
-    else if(w.status===403){r.style.color="#ff9b7b";r.textContent="Verification expired - complete the check and try again.";}
-    else{r.style.color="#ff9b7b";r.textContent="No key found for that email yet - if you just paid, contact support.";}
-    if(window.turnstile){try{turnstile.reset()}catch(e){}}
-  }catch(e){r.style.color="#ff7b7b";r.textContent="Could not reach the key server - try again."}
+    if(j.sent){r.innerHTML='<span class="ok">Your key has been sent to '+m+' — check your inbox!</span>';}
+    else if(w.status===429&&j.cooldown){
+      var secs=j.cooldown;
+      r.innerHTML='<span class="kd">Cooldown: '+secs+'s — your key was already sent.</span>';
+      var iv=setInterval(function(){secs--;if(secs<=0){clearInterval(iv);r.innerHTML='<span class="mut">Cooldown over — try again.</span>'}else{r.innerHTML='<span class="kd">Cooldown: '+secs+'s</span>'}},1000);
+    }
+    else if(w.status===403){r.innerHTML='<span class="warn">Verification expired — complete the check and try again.</span>';}
+    else{r.innerHTML='<span class="warn">No key found for that email yet — if you just paid, contact support.</span>';}
+  }catch(e){r.innerHTML='<span class="err">Could not reach the key server — try again.</span>';}
+  tsReset();
 }
-</script>
-<script>
-var tsWidget = null, tsFindTok = "", tsStatusTok = "";
-window.remmyTSInit = function(){
-  tsWidget = turnstile.render("#tsbox", { sitekey: "0x4AAAAAAF4hgZFEOEa4Me01", theme: "dark", callback: function(tok){ tsFindTok = tok; tsStatusTok = tok; } });
-};
-function tsReset(){ tsFindTok = ""; tsStatusTok = ""; try { turnstile.reset(tsWidget) } catch(e){} }
-async function resendKey(){
-  var m = document.getElementById("kmail").value.trim().toLowerCase();
-  var r = document.getElementById("kres");
-  if (!m || m.indexOf("@") < 0) { r.innerHTML = '<span class="err">Enter your checkout email.</span>'; return }
-  if (!tsFindTok) { r.innerHTML = '<span class="err">Complete the verification first.</span>'; return }
-  r.innerHTML = 'Checking...';
-  try {
-    var w = await fetch("/api/getkey", { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({ email: m, turnstile: tsFindTok }) });
-    var j = await w.json();
-    if (j.sent) { r.innerHTML = '<span class="ok">Your key has been sent to ' + m + ' — check your inbox!</span>'; }
-    else if (w.status === 429 && j.cooldown) { var secs = j.cooldown; r.innerHTML = '<span class="kd">Cooldown: ' + secs + 's — your key was already sent.</span>'; var iv = setInterval(function(){ secs--; if(secs<=0){clearInterval(iv); r.innerHTML = 'Cooldown over — try again.';} else { r.innerHTML = '<span class="kd">Cooldown: ' + secs + 's</span>'; } }, 1000); }
-    else if (w.status === 403) { r.innerHTML = '<span class="err">Verification expired - complete the check again.</span>'; }
-    else { r.innerHTML = '<span class="err">No key found for that email yet - if you just paid, contact support.</span>'; }
-    tsReset();
-  } catch(e){ r.innerHTML = '<span class="err">Could not reach the key server - try again.</span>'; }
-}
+
+/* Status check by key paste (masked response) */
 async function checkStatus(){
-  var kv = document.getElementById("skey").value.trim();
-  var r = document.getElementById("sres");
-  if (!kv) { r.innerHTML = '<span class="err">Paste your key first.</span>'; return }
-  if (!tsStatusTok) { r.innerHTML = '<span class="err">Complete the verification first.</span>'; return }
-  r.innerHTML = 'Checking...';
-  try {
-    var w = await fetch("/api/status", { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({ key: kv, turnstile: tsStatusTok }) });
-    var j = await w.json();
-    if (!j.found) { r.innerHTML = '<span class="err">Key not found - check it and try again.</span>'; return }
-    r.innerHTML = '<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;margin-top:8px;text-align:left">'
-      + '<div style="font-size:12px;color:#8b959e">' + (j.plan || "Remmy HUB") + '</div>'
-      + '<div style="font-size:13px;color:#c3cad2;user-select:all">' + (j.masked || "") + '</div>'
-      + '<div style="font-size:13px;font-weight:700;color:' + (j.color || "#7de8cf") + '">' + (j.status || "") + '</div></div>';
-  } catch(e){ r.innerHTML = '<span class="err">Could not reach the status server - try again.</span>'; }
+  var kv=document.getElementById("skey").value.trim();
+  var r=document.getElementById("sres");
+  if(!kv){r.innerHTML='<span class="err">Paste your key first.</span>';return}
+  if(!tsTok){r.innerHTML='<span class="warn">Complete the verification first.</span>';return}
+  r.innerHTML='<span class="mut">Checking...</span>';
+  try{
+    var w=await fetch("/api/status",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({key:kv,turnstile:tsTok})});
+    var j=await w.json();
+    if(w.status===403){r.innerHTML='<span class="warn">Verification expired — complete the check and try again.</span>';}
+    else if(!j.found){r.innerHTML='<span class="warn">Key not found — check it and try again.</span>';}
+    else{
+      r.innerHTML='<div class="kcard">'
+        +'<div style="font-size:12px;color:#8b959e">'+(j.plan||"Remmy HUB")+'</div>'
+        +'<div style="font-size:13px;color:#c3cad2">'+(j.masked||"")+'</div>'
+        +'<div style="font-size:13px;font-weight:700;color:'+(j.color||"#7de8cf")+'">'+(j.status||"")+'</div></div>';
+    }
+  }catch(e){r.innerHTML='<span class="err">Could not reach the status server — try again.</span>';}
+  tsReset();
 }
 </script>
 </body>
