@@ -4,170 +4,226 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Remmy HUB — Premium Utility for Roblox</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090d'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='36' font-weight='800' fill='%233ad6b5' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
-<meta name="theme-color" content="#07090d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070b'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='36' font-weight='800' fill='%233ad6b5' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#05070b">
 <meta name="description" content="Remmy HUB — all-in-one utility script tool for Roblox. Weekly, monthly and yearly plans with instant automatic delivery, Discord redemption and priority support.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=remmyTSInit&render=explicit" async defer></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:#07090d;color:#e8eaf0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.65;overflow-x:hidden}
+body{background:#05070b;color:#e8eaf0;font-family:'Inter',system-ui,sans-serif;line-height:1.65;overflow-x:hidden}
 a{color:#3ad6b5;text-decoration:none}
-::selection{background:rgba(58,214,181,.35);color:#fff}
-.aur{position:fixed;inset:-20%;z-index:-3;background:
- radial-gradient(45% 42% at 18% 22%,rgba(58,214,181,.20),transparent 62%),
- radial-gradient(42% 40% at 82% 12%,rgba(88,101,242,.18),transparent 62%),
- radial-gradient(50% 45% at 74% 82%,rgba(255,170,40,.12),transparent 62%),
- radial-gradient(45% 40% at 8% 88%,rgba(58,120,255,.14),transparent 62%),
- #07090d;animation:aur 16s ease-in-out infinite alternate}
-.aur2{position:fixed;inset:0;z-index:-2;background:
- radial-gradient(30% 30% at 50% 40%,rgba(58,214,181,.10),transparent 70%),
- radial-gradient(26% 26% at 30% 70%,rgba(255,170,40,.08),transparent 70%);
- animation:aur 11s ease-in-out infinite alternate-reverse}
-@keyframes aur{from{transform:scale(1) translate(0,0)}to{transform:scale(1.12) translate(-2%,-3%)}}
+::selection{background:rgba(58,214,181,.4);color:#fff}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif}
+/* ---------- background layers ---------- */
+#pcanvas{position:fixed;inset:0;z-index:-3;opacity:.55}
+.aur{position:fixed;inset:-20%;z-index:-4;background:
+ radial-gradient(45% 42% at 18% 22%,rgba(58,214,181,.14),transparent 62%),
+ radial-gradient(42% 40% at 82% 12%,rgba(99,102,241,.16),transparent 62%),
+ radial-gradient(50% 45% at 74% 82%,rgba(255,170,40,.08),transparent 62%),#05070b;
+ animation:aur 18s ease-in-out infinite alternate}
+@keyframes aur{from{transform:scale(1)}to{transform:scale(1.14) translate(-2%,-3%)}}
 .gridov{position:fixed;inset:0;z-index:-1;pointer-events:none;
- background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
- background-size:46px 46px;
- -webkit-mask-image:radial-gradient(75% 62% at 50% 28%,#000 25%,transparent 100%);
- mask-image:radial-gradient(75% 62% at 50% 28%,#000 25%,transparent 100%)}
-.rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+ background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+ background-size:44px 44px;
+ -webkit-mask-image:radial-gradient(80% 60% at 50% 24%,#000 20%,transparent 100%);
+ mask-image:radial-gradient(80% 60% at 50% 24%,#000 20%,transparent 100%)}
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .rv.on{opacity:1;transform:translateY(0)}
-.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;max-width:1000px;margin:0 auto;padding:16px 22px;background:rgba(10,13,17,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06);border-radius:0 0 18px 18px}
-.logo{font-weight:700;font-size:20px;color:#fff;display:flex;align-items:center;gap:9px}
-.logo .lmark{width:28px;height:28px;border-radius:8px;background:linear-gradient(140deg,#7de8cf,#3ad6b5);display:flex;align-items:center;justify-content:center;font-weight:800;color:#0a1916;font-size:15px;box-shadow:0 4px 14px rgba(58,214,181,.4)}
+/* ---------- nav ---------- */
+.nav{position:sticky;top:14px;z-index:50;display:flex;justify-content:space-between;align-items:center;max-width:1060px;margin:14px auto 0;padding:10px 10px 10px 20px;
+ background:rgba(10,14,19,.6);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+ border:1px solid rgba(255,255,255,.08);border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.45)}
+.logo{font-weight:700;font-size:19px;color:#fff;font-family:'Space Grotesk',sans-serif;display:flex;align-items:center;gap:10px;letter-spacing:.3px}
+.lmark{width:30px;height:30px;border-radius:9px;background:linear-gradient(140deg,#7de8cf,#3ad6b5 55%,#22b18c);display:flex;align-items:center;justify-content:center;font-weight:700;color:#04120d;font-size:16px;box-shadow:0 4px 16px rgba(58,214,181,.45),inset 0 1px 0 rgba(255,255,255,.5)}
 .logo span{color:#3ad6b5}
-.navlinks{display:flex;gap:18px;flex-wrap:wrap}
-.navlinks a{color:#aab2bd;font-size:13.5px;transition:color .2s}
-.navlinks a:hover{color:#3ad6b5}
-.wrap{max-width:1000px;margin:0 auto;padding:0 20px 60px}
-.hero{position:relative;margin-top:26px;border-radius:28px;padding:60px 38px 50px;text-align:center;overflow:hidden;
- background:linear-gradient(165deg,rgba(27,33,41,.92),rgba(15,20,26,.88));border:1px solid rgba(255,255,255,.09);
- box-shadow:0 30px 80px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06)}
-.hero::before{content:"";position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:560px;height:280px;border-radius:50%;background:radial-gradient(closest-side,rgba(58,214,181,.15),transparent);filter:blur(30px);pointer-events:none}
-.hero>*{position:relative}
-.orb{position:absolute;border-radius:50%;filter:blur(46px);pointer-events:none;opacity:.5}
-.orb.o1{width:190px;height:190px;background:rgba(58,214,181,.22);top:-50px;left:-40px;animation:float1 9s ease-in-out infinite alternate}
-.orb.o2{width:150px;height:150px;background:rgba(88,101,242,.24);bottom:-40px;right:-30px;animation:float2 11s ease-in-out infinite alternate}
-.orb.o3{width:110px;height:110px;background:rgba(255,170,40,.16);top:40%;right:12%;animation:float1 13s ease-in-out infinite alternate-reverse}
-@keyframes float1{from{transform:translate(0,0)}to{transform:translate(36px,26px)}}
-@keyframes float2{from{transform:translate(0,0)}to{transform:translate(-30px,-22px)}}
-.badge{display:inline-block;background:linear-gradient(110deg,#ffd65c,#ff961e,#ffd65c);background-size:200%;color:#201604;font-weight:800;font-size:12px;padding:6px 16px;border-radius:999px;letter-spacing:1.5px;animation:shine 3s linear infinite}
-@keyframes shine{to{background-position:200% 0}}
-h1{font-size:clamp(32px,5.6vw,54px);line-height:1.08;margin:18px auto 10px;max-width:740px;font-weight:800}
-h1 .grad{background:linear-gradient(90deg,#3ad6b5,#9be8ff,#ffd65c,#3ad6b5);background-size:280% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 7s linear infinite}
-@keyframes flow{to{background-position:280% 0}}
-.hero p.sub{color:#aab4be;font-size:clamp(14px,2vw,16.5px);max-width:600px;margin:0 auto}
-.planline{margin-top:14px;font-size:13.5px;color:#8b959e}
-.pricebox{display:inline-flex;align-items:baseline;gap:10px;margin:24px 0 6px;padding:14px 28px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)}
-.price{font-size:44px;font-weight:800;color:#3ad6b5}
-.pricebox span{font-size:13px;color:#9aa4ad;text-align:left}
-.cta{display:inline-block;position:relative;font-weight:800;font-size:16px;padding:16px 38px;border-radius:16px;margin:20px 8px 0;overflow:hidden;
+.navlinks{display:flex;gap:4px;flex-wrap:wrap}
+.navlinks a{color:#9aa4b2;font-size:13px;font-weight:500;padding:8px 12px;border-radius:10px;transition:color .2s,background .2s}
+.navlinks a:hover{color:#e8eaf0;background:rgba(255,255,255,.06)}
+.navlinks a.hot{color:#3ad6b5;background:rgba(58,214,181,.1);border:1px solid rgba(58,214,181,.25);padding:7px 14px}
+/* ---------- layout ---------- */
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px 60px}
+/* ---------- hero ---------- */
+.hero{position:relative;margin-top:34px;display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:center;
+ border-radius:30px;padding:54px 44px;overflow:hidden;
+ background:linear-gradient(160deg,rgba(20,26,34,.92),rgba(10,13,18,.94));border:1px solid rgba(255,255,255,.08);
+ box-shadow:0 40px 100px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.07)}
+.hero::before{content:"";position:absolute;top:-160px;left:-80px;width:520px;height:340px;border-radius:50%;background:radial-gradient(closest-side,rgba(58,214,181,.16),transparent);filter:blur(40px);pointer-events:none}
+.hero>*{position:relative;z-index:1}
+.vchip{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1px;color:#7de8cf;
+ background:rgba(58,214,181,.08);border:1px solid rgba(58,214,181,.28);padding:6px 14px;border-radius:999px}
+.vchip .dot{width:7px;height:7px;border-radius:50%;background:#3ad6b5;box-shadow:0 0 10px #3ad6b5;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+h1{font-size:clamp(34px,4.8vw,54px);line-height:1.05;margin:20px 0 14px;font-weight:700;letter-spacing:-1px}
+h1 .grad{background:linear-gradient(92deg,#3ad6b5 10%,#9be8ff 45%,#c9b8ff 75%,#3ad6b5);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 8s linear infinite}
+@keyframes flow{to{background-position:250% 0}}
+.hero p.sub{color:#a7b0bd;font-size:15.5px;max-width:480px}
+.planline{margin-top:14px;font-size:13px;color:#7d8790}
+.planline a{color:#7de8cf;font-weight:600}
+.cta{display:inline-block;position:relative;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;padding:15px 32px;border-radius:14px;margin:22px 10px 0 0;overflow:hidden;
  background:linear-gradient(110deg,#ffd65c,#ff961e,#ffe48a,#ff961e,#ffd65c);background-size:220% 100%;color:#201604;
- box-shadow:0 10px 34px rgba(255,150,30,.35),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .2s,box-shadow .2s;animation:shine 3.2s linear infinite}
+ box-shadow:0 10px 34px rgba(255,150,30,.35),inset 0 1px 0 rgba(255,255,255,.55);transition:transform .2s,box-shadow .2s;animation:shine 3.2s linear infinite}
 @keyframes shine{to{background-position:220% 0}}
-.cta:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 44px rgba(255,150,30,.5)}
-.cta::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);animation:sweep 2.6s ease-in-out infinite}
+.cta:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(255,150,30,.5)}
+.cta::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);animation:sweep 2.8s ease-in-out infinite}
 @keyframes sweep{0%{left:-80%}60%,100%{left:130%}}
-.cta.ghost{background:rgba(255,255,255,.05);color:#e8eaf0;border:1px solid rgba(255,255,255,.22);box-shadow:none;animation:none}
-.cta.ghost:hover{border-color:#3ad6b5;color:#3ad6b5;box-shadow:0 10px 30px rgba(58,214,181,.15)}
+.cta.ghost{background:rgba(255,255,255,.04);color:#e8eaf0;border:1px solid rgba(255,255,255,.18);box-shadow:none;animation:none}
+.cta.ghost:hover{border-color:rgba(58,214,181,.5);color:#7de8cf}
 .cta.ghost::after{display:none}
-.note{font-size:12px;color:#7d8790;margin-top:16px}
-h2.sec{font-size:clamp(23px,3.2vw,30px);color:#f8fafc;margin:64px 0 8px;text-align:center}
-h2.sec::after{content:"";display:block;width:56px;height:3px;border-radius:3px;margin:12px auto 0;background:linear-gradient(90deg,#3ad6b5,#9be8ff);animation:bar 4s ease-in-out infinite alternate}
-@keyframes bar{from{transform:scaleX(.6)}to{transform:scaleX(1)}}
-p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-.card{position:relative;background:linear-gradient(165deg,rgba(30,37,46,.75),rgba(18,22,28,.85));border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:26px;transition:transform .25s,border-color .25s,box-shadow .25s;overflow:hidden}
-.card::before{content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity .3s;pointer-events:none;
- background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(58,214,181,.10),transparent 65%)}
-.card:hover::before{opacity:1}
-.card:hover{transform:translateY(-6px);border-color:rgba(58,214,181,.45);box-shadow:0 18px 44px rgba(0,0,0,.45),0 0 0 1px rgba(58,214,181,.15)}
-.card .ic{font-size:24px;margin-bottom:10px;display:block}
-.card h3{font-size:15.5px;color:#f0f3f6;margin-bottom:8px}
-.card p{font-size:13px;color:#9aa4ad}
-.payrow{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
-.pay{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:9px 14px;height:40px;transition:border-color .2s,transform .2s}
+.hero .note{font-size:11.5px;color:#6b7580;margin-top:16px}
+.payrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pay{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:7px 12px;height:36px;transition:border-color .2s,transform .2s}
 .pay:hover{border-color:rgba(58,214,181,.4);transform:translateY(-2px)}
-.pay svg{display:block;height:20px;width:auto}
-.pay .wt{font-weight:700;font-size:13.5px;color:#fff;letter-spacing:.5px}
-.pay .gp{font-size:13.5px;color:#c3cad2}
-.games{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:18px}
-.game{background:linear-gradient(165deg,rgba(58,214,181,.10),rgba(58,214,181,.03));border:1px solid rgba(58,214,181,.25);border-radius:14px;padding:14px 26px;font-weight:600;color:#dff7f0;font-size:14px;transition:transform .25s,border-color .25s,box-shadow .25s}
-.game:hover{transform:translateY(-4px);border-color:rgba(58,214,181,.55);box-shadow:0 12px 30px rgba(58,214,181,.12)}
-.about{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;align-items:stretch}
-.about .txt{background:linear-gradient(165deg,rgba(30,37,46,.75),rgba(18,22,28,.85));border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:28px}
-.about .txt p{font-size:14px;color:#c3cad2;margin-bottom:12px}
-.about .txt p:last-child{margin-bottom:0}
-.about .txt b{color:#fff}
-.stats{display:grid;grid-template-rows:repeat(4,1fr);gap:10px}
-.stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;justify-content:center;transition:border-color .25s,transform .25s}
-.stat:hover{border-color:rgba(58,214,181,.35);transform:translateX(4px)}
-.stat b{font-size:20px;color:#3ad6b5}
-.stat span{font-size:11.5px;color:#8b959e}
-.steps{counter-reset:s;max-width:720px;margin:0 auto}
-.step{position:relative;display:flex;gap:18px;align-items:flex-start;background:linear-gradient(165deg,rgba(30,37,46,.7),rgba(18,22,28,.85));border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:20px 22px;margin-bottom:12px;transition:border-color .25s,transform .25s}
+.pay svg{display:block;height:18px;width:auto}
+.pay .wt{font-weight:600;font-size:12.5px;color:#fff;letter-spacing:.5px}
+.pay .gp{font-size:12.5px;color:#c3cad2}
+/* ---------- loader mockup ---------- */
+.mock{position:relative;border-radius:18px;overflow:hidden;background:rgba(8,11,16,.85);border:1px solid rgba(255,255,255,.1);
+ box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(58,214,181,.12),0 0 60px rgba(58,214,181,.06);font-family:'JetBrains Mono',monospace}
+.mock::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px);background-size:100% 3px;pointer-events:none;opacity:.5}
+.mock::after{content:"";position:absolute;left:0;right:0;height:90px;top:-90px;background:linear-gradient(rgba(125,232,207,0),rgba(125,232,207,.05),rgba(125,232,207,0));animation:scan 4.5s linear infinite;pointer-events:none}
+@keyframes scan{to{top:110%}}
+.mock-top{display:flex;align-items:center;gap:8px;padding:11px 16px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.07);font-size:11px;color:#8b959e}
+.mock-top .t{width:11px;height:11px;border-radius:50%}
+.mock-top .t1{background:#ff5f57}.mock-top .t2{background:#febc2e}.mock-top .t3{background:#28c840}
+.mock-top .title{margin-left:6px;letter-spacing:.5px}
+.mock-body{padding:18px 20px 22px}
+.mock-brand{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.mock-brand b{font-family:'Space Grotesk',sans-serif;font-size:17px;color:#fff;letter-spacing:.5px}
+.mock-brand b span{color:#3ad6b5}
+.mock-tags{display:flex;gap:6px}
+.mtag{font-size:9.5px;letter-spacing:1px;padding:3px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.14);color:#9aa4b2}
+.mtag.gold{border-color:rgba(255,214,92,.4);color:#ffd65c;background:rgba(255,214,92,.07)}
+.mkey{margin-bottom:12px}
+.mkey label{font-size:9.5px;color:#6b7580;letter-spacing:1.5px;display:block;margin-bottom:5px}
+.mkey .box{background:#0a0e14;border:1px solid rgba(58,214,181,.3);border-radius:9px;padding:11px 13px;font-size:13px;color:#7de8cf;letter-spacing:.5px;display:flex;align-items:center;min-height:42px;box-shadow:inset 0 0 20px rgba(58,214,181,.04)}
+.caret{display:inline-block;width:8px;height:15px;background:#3ad6b5;margin-left:4px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.mlog{font-size:10.5px;color:#5f6a76;min-height:44px;margin-bottom:14px;line-height:1.8}
+.mlog .ok{color:#3ad6b5}
+.mlog .now{color:#9be8ff}
+.togs{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.tog{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:8px 11px;font-size:11px;color:#c3cad2}
+.tog .sw{width:26px;height:14px;border-radius:999px;background:rgba(255,255,255,.1);position:relative;transition:background .3s}
+.tog .sw::after{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:#6b7580;top:2px;left:2px;transition:all .3s}
+.tog.on{border-color:rgba(58,214,181,.25)}
+.tog.on .sw{background:rgba(58,214,181,.35)}
+.tog.on .sw::after{left:14px;background:#3ad6b5;box-shadow:0 0 8px #3ad6b5}
+.mock-ok{margin-top:14px;font-size:11px;font-weight:700;color:#3ad6b5;letter-spacing:.5px;opacity:0;transform:translateY(6px);transition:all .5s}
+.mock-ok.show{opacity:1;transform:none}
+.mock-ok::before{content:"✔ "}
+/* ---------- marquee ---------- */
+.marq{overflow:hidden;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);margin:64px -20px 0;padding:14px 0;background:rgba(10,14,19,.4)}
+.marq-in{display:flex;gap:44px;white-space:nowrap;animation:marq 30s linear infinite;width:max-content}
+@keyframes marq{to{transform:translateX(-50%)}}
+.marq-in span{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:2px;color:#5f6a76;display:flex;align-items:center;gap:44px}
+.marq-in span::after{content:"◆";color:#3ad6b5;font-size:9px}
+/* ---------- sections ---------- */
+h2.sec{font-size:clamp(26px,3.4vw,36px);color:#f8fafc;margin:84px 0 10px;text-align:center;font-weight:700;letter-spacing:-.5px}
+h2.sec .hl{color:#3ad6b5}
+p.secs{color:#8b959e;text-align:center;font-size:14.5px;margin-bottom:34px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.card{position:relative;background:linear-gradient(165deg,rgba(22,28,36,.7),rgba(12,16,22,.85));border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:26px;transition:transform .3s,border-color .3s,box-shadow .3s;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity .3s;pointer-events:none;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(58,214,181,.09),transparent 65%)}
+.card:hover::before{opacity:1}
+.card:hover{transform:translateY(-6px);border-color:rgba(58,214,181,.4);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.card .ic{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;background:linear-gradient(140deg,rgba(58,214,181,.16),rgba(58,214,181,.05));border:1px solid rgba(58,214,181,.22)}
+.card h3{font-size:15.5px;color:#f0f3f6;margin-bottom:8px;font-weight:600}
+.card p{font-size:13px;color:#9aa4ad}
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:34px}
+.stat{background:linear-gradient(165deg,rgba(22,28,36,.7),rgba(12,16,22,.85));border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:22px;text-align:center;transition:border-color .3s,transform .3s}
+.stat:hover{border-color:rgba(58,214,181,.4);transform:translateY(-4px)}
+.stat b{font-family:'Space Grotesk',sans-serif;font-size:26px;color:#3ad6b5;display:block;letter-spacing:-.5px}
+.stat span{font-size:11px;color:#7d8790;letter-spacing:1px;text-transform:uppercase}
+/* ---------- games ---------- */
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;max-width:820px;margin:0 auto}
+.game{position:relative;border-radius:18px;padding:34px 24px 24px;text-align:center;overflow:hidden;border:1px solid rgba(255,255,255,.08);transition:transform .3s,border-color .3s,box-shadow .3s;background:linear-gradient(165deg,rgba(22,28,36,.7),rgba(12,16,22,.85))}
+.game:hover{transform:translateY(-6px);border-color:rgba(58,214,181,.45);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.game .art{font-size:44px;margin-bottom:14px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.5))}
+.game::before{content:"";position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:200px;height:120px;border-radius:50%;filter:blur(30px);opacity:.5}
+.game:nth-child(1)::before{background:rgba(58,214,181,.25)}
+.game:nth-child(2)::before{background:rgba(99,102,241,.28)}
+.game:nth-child(3)::before{background:rgba(255,170,40,.18)}
+.game h3{font-size:16px;color:#f0f3f6;margin-bottom:8px;position:relative}
+.game .badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:#7de8cf;background:rgba(58,214,181,.1);border:1px solid rgba(58,214,181,.3);padding:4px 12px;border-radius:999px;position:relative}
+/* ---------- steps ---------- */
+.steps{counter-reset:s;max-width:680px;margin:0 auto;position:relative}
+.steps::before{content:"";position:absolute;left:19px;top:20px;bottom:20px;width:2px;background:linear-gradient(rgba(58,214,181,.5),rgba(58,214,181,.08))}
+.step{position:relative;display:flex;gap:18px;align-items:flex-start;background:linear-gradient(165deg,rgba(22,28,36,.72),rgba(12,16,22,.85));border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:20px 22px;margin-bottom:14px;transition:border-color .3s,transform .3s}
 .step:hover{border-color:rgba(58,214,181,.4);transform:translateX(6px)}
-.step::before{counter-increment:s;content:counter(s);flex:0 0 40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#0a1916;background:linear-gradient(140deg,#7de8cf,#3ad6b5);box-shadow:0 6px 18px rgba(58,214,181,.3)}
-.step p{font-size:14px;color:#c3cad2}
+.step::before{counter-increment:s;content:counter(s);position:relative;z-index:1;flex:0 0 40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;color:#04120d;background:linear-gradient(140deg,#7de8cf,#3ad6b5);box-shadow:0 6px 20px rgba(58,214,181,.4)}
+.step p{font-size:14px;color:#c3cad2;padding-top:7px}
 .step p a{font-weight:600}
 .step p b{color:#fff}
-.faq{max-width:760px;margin:0 auto}
-.q{background:linear-gradient(165deg,rgba(30,37,46,.7),rgba(18,22,28,.85));border:1px solid rgba(255,255,255,.07);border-radius:14px;margin-bottom:10px;overflow:hidden;transition:border-color .25s}
+/* ---------- faq ---------- */
+.faq{max-width:740px;margin:0 auto}
+.q{background:linear-gradient(165deg,rgba(22,28,36,.72),rgba(12,16,22,.85));border:1px solid rgba(255,255,255,.07);border-radius:14px;margin-bottom:10px;overflow:hidden;transition:border-color .3s}
 .q:hover{border-color:rgba(58,214,181,.35)}
-.q button{width:100%;text-align:left;background:none;border:none;color:#e8eaf0;font-family:inherit;font-size:14.5px;font-weight:600;padding:18px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.q button{width:100%;text-align:left;background:none;border:none;color:#e8eaf0;font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:600;padding:18px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
 .q button .ar{transition:transform .3s;color:#3ad6b5;font-size:18px;flex:0 0 auto}
 .q.open button .ar{transform:rotate(45deg)}
 .q .a{max-height:0;overflow:hidden;transition:max-height .35s ease}
 .q .a p{font-size:13.5px;color:#aab4be;padding:0 20px 18px}
 .q.open{border-color:rgba(58,214,181,.4)}
-.final{margin-top:70px;border-radius:24px;padding:52px 30px;text-align:center;position:relative;overflow:hidden;
- background:linear-gradient(165deg,rgba(58,214,181,.12),rgba(15,20,26,.9));border:1px solid rgba(58,214,181,.3)}
-.final h2{margin:0 0 10px}
-.final p{color:#aab4be;font-size:14.5px;max-width:520px;margin:0 auto 6px}
-.contact{margin-top:60px}
+/* ---------- final cta ---------- */
+.final{margin-top:84px;border-radius:24px;padding:56px 30px;text-align:center;position:relative;overflow:hidden;
+ background:linear-gradient(165deg,rgba(58,214,181,.1),rgba(10,14,19,.94));border:1px solid rgba(58,214,181,.28)}
+.final::before{content:"";position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:420px;height:200px;border-radius:50%;background:radial-gradient(closest-side,rgba(58,214,181,.2),transparent);filter:blur(30px)}
+.final h2{margin:0 0 10px;position:relative}
+.final p{color:#a7b0bd;font-size:14.5px;max-width:520px;margin:0 auto 6px;position:relative}
+.final .cta{position:relative}
+/* ---------- contact + key support ---------- */
+.contact{margin-top:80px}
 .contact .grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .contact .card p{user-select:all}
 .ks{grid-column:1/-1;padding:0;overflow:hidden}
-.ks-in{position:relative;padding:26px}
+.ks-in{position:relative;padding:28px}
 .ks-in::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;padding:1px;
  background:conic-gradient(from var(--rot,0deg),transparent 8%,rgba(58,214,181,.55),transparent 22%);
  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
  animation:rot 5s linear infinite}
 @property --rot{syntax:"<angle>";initial-value:0deg;inherits:false}
 @keyframes rot{to{--rot:360deg}}
-.ks h3{display:flex;align-items:center;gap:8px}
-.ks .ksgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+.ks .ksgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
 .ks label{display:block;font-size:12.5px;color:#9aa4ad;margin:0 0 8px}
 .ks label b{color:#e8eaf0}
-.ks input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:#e8eaf0;font-family:inherit;font-size:13px;transition:border-color .2s,box-shadow .2s;outline:none}
+.ks input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:#e8eaf0;font-family:'JetBrains Mono',monospace;font-size:13px;transition:border-color .2s,box-shadow .2s;outline:none}
 .ks input:focus{border-color:rgba(58,214,181,.6);box-shadow:0 0 0 3px rgba(58,214,181,.12)}
-.ks button{width:100%;margin-top:10px;background:rgba(58,214,181,.15);border:1px solid rgba(58,214,181,.4);color:#7de8cf;border-radius:10px;padding:12px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s,transform .2s}
+.ks button{width:100%;margin-top:10px;background:rgba(58,214,181,.14);border:1px solid rgba(58,214,181,.4);color:#7de8cf;font-family:'Space Grotesk',sans-serif;border-radius:10px;padding:12px;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s,transform .2s}
 .ks button:hover{background:rgba(58,214,181,.28);transform:translateY(-1px)}
 .ks .tsrow{display:flex;justify-content:center;margin-top:16px}
-.ks .fine{text-align:center;font-size:11px;color:#5c656e;margin:6px 0 0}
+.ks .fine{text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:#5c656e;margin:8px 0 0;letter-spacing:.5px}
 .res{margin-top:12px;font-size:13px;word-break:break-word}
-.res .ok{color:#7de8cf}
-.res .err{color:#ff7b7b}
-.res .warn{color:#ff9b7b}
-.res .kd{color:#ffca6b}
-.res .mut{color:#8b959e}
-.kcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;margin-top:8px;text-align:left}
-.footer{position:relative;border-top:1px solid rgba(255,255,255,.06);margin-top:70px;padding:34px 20px;text-align:center;font-size:12.5px;color:#7d8790;background:rgba(10,13,17,.5)}
+.res .ok{color:#7de8cf}.res .err{color:#ff7b7b}.res .warn{color:#ff9b7b}.res .kd{color:#ffca6b}.res .mut{color:#8b959e}
+.kcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;margin-top:8px;text-align:left;font-family:'JetBrains Mono',monospace}
+/* ---------- footer ---------- */
+.footer{position:relative;border-top:1px solid rgba(255,255,255,.06);margin-top:80px;padding:38px 20px;text-align:center;font-size:12.5px;color:#7d8790;background:rgba(8,11,16,.6)}
 .footer a{color:#9aa4ad;margin:0 10px;transition:color .2s}
 .footer a:hover{color:#3ad6b5}
-@media(max-width:720px){
- .about{grid-template-columns:1fr}
- .hero{padding:46px 22px 42px}
- .navlinks{gap:12px}
- .navlinks a{font-size:12.5px}
- .cta{width:100%;margin:14px 0 0}
- .cta.ghost{margin-bottom:14px}
+/* ---------- mobile ---------- */
+@media(max-width:860px){
+ .hero{grid-template-columns:1fr;padding:44px 26px}
+ .mock{max-width:420px;margin:6px auto 0}
+ .navlinks a{padding:7px 9px;font-size:12.5px}
+}
+@media(max-width:560px){
+ .nav{top:8px;flex-direction:column;gap:8px;padding:12px}
+ .navlinks{justify-content:center}
+ .togs{grid-template-columns:1fr}
+ .cta{width:100%;margin:16px 0 0;text-align:center}
+ .cta.ghost{margin-bottom:6px}
  .ks .ksgrid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
-<div class="aur"></div><div class="aur2"></div><div class="gridov"></div>
+<canvas id="pcanvas"></canvas>
+<div class="aur"></div><div class="gridov"></div>
 
 <div class="nav">
   <div class="logo"><span class="lmark">R</span>Remmy <span>HUB</span></div>
@@ -175,51 +231,74 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
     <a href="index.html#about">About</a>
     <a href="index.html#features">Features</a>
     <a href="index.html#games">Games</a>
-    <a href="pricing.html">Pricing</a>
     <a href="index.html#how">How it works</a>
     <a href="index.html#faq">FAQ</a>
     <a href="index.html#contact">Contact</a>
+    <a href="pricing.html" class="hot">Pricing →</a>
   </div>
 </div>
 
 <div class="wrap">
 
   <div class="hero rv on">
-    <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
-    <span class="badge">PREMIUM · FLEXIBLE PLANS</span>
-    <h1><span class="grad">Remmy HUB</span><br>All-in-One Utility for Roblox</h1>
-    <p class="sub">Remmy HUB enhances your Roblox experience with a full suite of premium tools — flexible weekly, monthly and yearly plans with every feature, every supported game.</p>
-    <p class="planline">Weekly, monthly &amp; yearly plans — see <a href="pricing.html">Pricing</a></p>
-    <a class="cta" href="pricing.html">💎 View Pricing Plans</a>
-    <a class="cta ghost" href="https://discord.gg/FGKzwuQFQB">Join the Discord</a>
-    <p class="note">Instant automatic delivery · Cards, Apple Pay, Google Pay &amp; crypto accepted</p>
-    <div class="payrow">
-      <span class="pay"><svg viewBox="0 0 48 16" height="14"><text x="0" y="13" font-family="Arial, sans-serif" font-size="14" font-weight="800" font-style="italic" fill="#ffffff" letter-spacing="1">VISA</text></svg></span>
-      <span class="pay"><svg viewBox="0 0 36 22" height="16"><circle cx="13" cy="11" r="9" fill="#EB001B"/><circle cx="23" cy="11" r="9" fill="#F79E1B" fill-opacity="0.92"/></svg><span class="wt">Mastercard</span></span>
-      <span class="pay"><svg viewBox="0 0 24 24" height="18"><path fill="#fff" d="M16.365 1.43c0 1.14-.47 2.2-1.22 3.05-.8.9-2.1 1.6-3.2 1.5-.14-1.1.42-2.3 1.15-3.06.8-.9 2.2-1.55 3.27-1.5zM20.94 17.1c-.57 1.3-.85 1.88-1.6 3.03-1.04 1.6-2.5 3.6-4.32 3.6-1.6.02-2-1.05-4.2-1.04-2.18.01-2.64 1.07-4.24 1.05-1.82-.02-3.2-1.8-4.24-3.4C1.06 14.9.55 9.3 2.7 6.9c1-1.4 2.6-2.2 4.1-2.2 1.5 0 2.5.8 3.8.8 1.2 0 2-.8 3.7-.8 1.3 0 2.7.7 3.7 1.9-3.2 1.8-2.7 6.4.05 7.7-.55 1.3-.55 1.3-.51 1.4z"/></svg><span class="wt">Pay</span></span>
-      <span class="pay"><svg viewBox="0 0 24 24" height="18"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09c.95-2.85 3.6-4.96 6.73-4.96z"/></svg><span class="gp">Pay</span></span>
-      <span class="pay"><svg viewBox="0 0 32 32" height="20"><circle cx="16" cy="16" r="16" fill="#F7931A"/><text x="16" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="800" fill="#fff">₿</text></svg><span class="wt">Bitcoin</span></span>
-      <span class="pay"><svg viewBox="0 0 32 32" height="20"><circle cx="16" cy="16" r="16" fill="#345D9D"/><text x="16" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="800" fill="#fff">Ł</text></svg><span class="wt">Litecoin</span></span>
+    <div>
+      <span class="vchip"><span class="dot"></span>ONLINE · v2.4 · 3 GAMES SUPPORTED</span>
+      <h1><span class="grad">Remmy HUB</span><br>The all-in-one utility for Roblox</h1>
+      <p class="sub">One license. Every feature. Every supported game. Remmy HUB runs beside your game with a clean, fast interface — pick your tools, tweak in seconds, done.</p>
+      <p class="planline">Weekly, monthly &amp; yearly plans — see <a href="pricing.html">Pricing</a></p>
+      <a class="cta" href="pricing.html">💎 View Pricing Plans</a>
+      <a class="cta ghost" href="https://discord.gg/FGKzwuQFQB">Join the Discord</a>
+      <p class="note">Instant automatic delivery · Cards, Apple Pay, Google Pay &amp; crypto</p>
+      <div class="payrow">
+        <span class="pay"><svg viewBox="0 0 48 16" height="13"><text x="0" y="13" font-family="Arial" font-size="13" font-weight="800" font-style="italic" fill="#fff" letter-spacing="1">VISA</text></svg></span>
+        <span class="pay"><svg viewBox="0 0 36 22" height="15"><circle cx="13" cy="11" r="9" fill="#EB001B"/><circle cx="23" cy="11" r="9" fill="#F79E1B" fill-opacity=".92"/></svg><span class="wt">Mastercard</span></span>
+        <span class="pay"><svg viewBox="0 0 24 24" height="17"><path fill="#fff" d="M16.365 1.43c0 1.14-.47 2.2-1.22 3.05-.8.9-2.1 1.6-3.2 1.5-.14-1.1.42-2.3 1.15-3.06.8-.9 2.2-1.55 3.27-1.5zM20.94 17.1c-.57 1.3-.85 1.88-1.6 3.03-1.04 1.6-2.5 3.6-4.32 3.6-1.6.02-2-1.05-4.2-1.04-2.18.01-2.64 1.07-4.24 1.05-1.82-.02-3.2-1.8-4.24-3.4C1.06 14.9.55 9.3 2.7 6.9c1-1.4 2.6-2.2 4.1-2.2 1.5 0 2.5.8 3.8.8 1.2 0 2-.8 3.7-.8 1.3 0 2.7.7 3.7 1.9-3.2 1.8-2.7 6.4.05 7.7-.55 1.3-.55 1.3-.51 1.4z"/></svg><span class="wt">Pay</span></span>
+        <span class="pay"><svg viewBox="0 0 24 24" height="17"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09c.95-2.85 3.6-4.96 6.73-4.96z"/></svg><span class="gp">Pay</span></span>
+        <span class="pay"><svg viewBox="0 0 32 32" height="19"><circle cx="16" cy="16" r="16" fill="#F7931A"/><text x="16" y="22" text-anchor="middle" font-family="Arial" font-size="16" font-weight="800" fill="#fff">₿</text></svg><span class="wt">BTC</span></span>
+        <span class="pay"><svg viewBox="0 0 32 32" height="19"><circle cx="16" cy="16" r="16" fill="#345D9D"/><text x="16" y="22" text-anchor="middle" font-family="Arial" font-size="16" font-weight="800" fill="#fff">Ł</text></svg><span class="wt">LTC</span></span>
+      </div>
+    </div>
+    <div class="mock" aria-hidden="true">
+      <div class="mock-top"><span class="t t1"></span><span class="t t2"></span><span class="t t3"></span><span class="title">remmy_hub — premium session</span></div>
+      <div class="mock-body">
+        <div class="mock-brand"><b>Remmy <span>HUB</span></b><div class="mock-tags"><span class="mtag">v2.4</span><span class="mtag gold">PREMIUM</span></div></div>
+        <div class="mkey"><label>LICENSE KEY</label><div class="box"><span id="typeKey"></span><span class="caret"></span></div></div>
+        <div class="mlog" id="mockLog"></div>
+        <div class="togs">
+          <div class="tog" data-t>Asylum Life<span class="sw"></span></div>
+          <div class="tog" data-t>MVSD<span class="sw"></span></div>
+          <div class="tog" data-t>Sonaria<span class="sw"></span></div>
+          <div class="tog" data-t>Auto-Farm<span class="sw"></span></div>
+          <div class="tog" data-t>ESP / Visuals<span class="sw"></span></div>
+          <div class="tog" data-t>Teleports<span class="sw"></span></div>
+        </div>
+        <div class="mock-ok" id="mockOk">PREMIUM ACTIVE — 364d left · no cooldown</div>
+      </div>
     </div>
   </div>
 
-  <h2 class="sec rv" id="about">What is Remmy HUB?</h2>
+  <div class="marq rv"><div class="marq-in" id="marq">
+    <span>INSTANT DELIVERY</span><span>ASYLUM LIFE</span><span>MVSD</span><span>CREATURES OF SONARIA</span><span>ALL FEATURES UNLOCKED</span><span>FREE UPDATES</span><span>24/7 AUTOMATED</span><span>DISCORD REDEMPTION</span>
+    <span>INSTANT DELIVERY</span><span>ASYLUM LIFE</span><span>MVSD</span><span>CREATURES OF SONARIA</span><span>ALL FEATURES UNLOCKED</span><span>FREE UPDATES</span><span>24/7 AUTOMATED</span><span>DISCORD REDEMPTION</span>
+  </div></div>
+
+  <h2 class="sec rv" id="about">What is <span class="hl">Remmy HUB</span>?</h2>
   <p class="secs rv">A premium utility toolkit for Roblox, built and maintained by an independent developer.</p>
-  <div class="about rv">
-    <div class="txt">
-      <p>Remmy HUB is an all-in-one utility script hub for Roblox. Instead of grinding unreliable free key walls every single day, Premium gives you permanent, one-click access to every feature the hub offers — in every supported game.</p>
-      <p>The hub is under active development: features are updated, games are added, and the interface is refined based on community feedback. Premium customers receive every update automatically at no extra cost.</p>
-      <p>Your subscription covers <b>full premium access</b>: one plan, one license key, and every feature in every supported game. The key is delivered instantly after checkout and activated by redeeming it in our Discord community. Once activated, Remmy HUB runs alongside the game with a clean, simple interface — pick your tools, adjust them in seconds, and they stay exactly how you set them.</p>
-    </div>
-    <div class="stats">
-      <div class="stat"><b>$6.99</b><span>monthly plan</span></div>
-      <div class="stat"><b>3</b><span>plans to choose from</span></div>
-      <div class="stat"><b>24/7</b><span>automated delivery</span></div>
-      <div class="stat"><b>3+</b><span>supported games &amp; growing</span></div>
+  <div class="stats rv">
+    <div class="stat"><b data-count="6.99" data-pre="$">$0</b><span>monthly plan</span></div>
+    <div class="stat"><b data-count="3" data-suf=" plans">0 plans</b><span>to choose from</span></div>
+    <div class="stat"><b data-count="60" data-pre="&lt;" data-suf="s">&lt;60s</b><span>key delivery</span></div>
+    <div class="stat"><b>24/7</b><span>automated</span></div>
+  </div>
+  <div class="rv" style="margin-top:14px">
+    <div style="background:linear-gradient(165deg,rgba(22,28,36,.7),rgba(12,16,22,.85));border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:28px">
+      <p style="font-size:14px;color:#c3cad2;margin-bottom:12px">Remmy HUB is an all-in-one utility script hub for Roblox. Instead of grinding unreliable free key walls every single day, Premium gives you permanent, one-click access to every feature the hub offers — in every supported game.</p>
+      <p style="font-size:14px;color:#c3cad2;margin-bottom:12px">The hub is under active development: features are updated, games are added, and the interface is refined based on community feedback. Premium customers receive every update automatically at no extra cost.</p>
+      <p style="font-size:14px;color:#c3cad2;margin-bottom:0">Your subscription covers <b style="color:#fff">full premium access</b>: one plan, one license key, every feature in every supported game. The key is delivered instantly after checkout and activated by redeeming it in our Discord community. Once activated, Remmy HUB runs alongside the game — pick your tools, adjust in seconds, and they stay exactly how you set them.</p>
     </div>
   </div>
 
-  <h2 class="sec rv" id="features">What Premium unlocks</h2>
+  <h2 class="sec rv" id="features">What <span class="hl">Premium</span> unlocks</h2>
   <p class="secs rv">Every feature. Every supported game. For as long as you're subscribed.</p>
   <div class="grid">
     <div class="card rv"><span class="ic">⚡</span><h3>Full Premium Access</h3><p>Every premium feature unlocked in every supported game — one license covers them all.</p></div>
@@ -230,24 +309,24 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
     <div class="card rv"><span class="ic">🎨</span><h3>Clean &amp; Simple</h3><p>Custom interface, one-click activation, built to just work.</p></div>
   </div>
 
-  <h2 class="sec rv" id="games">Supported games</h2>
+  <h2 class="sec rv" id="games">Supported <span class="hl">games</span></h2>
   <p class="secs rv">New games and features are added regularly — all included with Premium.</p>
   <div class="games rv">
-    <span class="game">🎮 Asylum Life</span>
-    <span class="game">🎮 MVSD</span>
-    <span class="game">🎮 Creatures of Sonaria</span>
+    <div class="game"><div class="art">🏚️</div><h3>Asylum Life</h3><span class="badge">SUPPORTED</span></div>
+    <div class="game"><div class="art">🏀</div><h3>MVSD</h3><span class="badge">SUPPORTED</span></div>
+    <div class="game"><div class="art">🐉</div><h3>Creatures of Sonaria</h3><span class="badge">SUPPORTED</span></div>
   </div>
 
-  <h2 class="sec rv" id="how">How it works</h2>
+  <h2 class="sec rv" id="how">How it <span class="hl">works</span></h2>
   <p class="secs rv">From payment to premium in under two minutes.</p>
   <div class="steps rv">
     <div class="step"><p><b>Complete your purchase.</b> Pay securely with card, Apple Pay, Google Pay or crypto.</p></div>
-    <div class="step"><p><b>Receive your key instantly.</b> Your license key appears on the order page and is emailed to you automatically.</p></div>
-    <div class="step"><p><b>Redeem it in Discord.</b> Join <a href="https://discord.gg/FGKzwuQFQB">discord.gg/FGKzwuQFQB</a> and redeem your key with our bot — takes under a minute.</p></div>
-    <div class="step"><p><b>Enter the key in the loader.</b> Premium access activates automatically. <b>You're done.</b></p></div>
+    <div class="step"><p><b>Receive your key instantly.</b> Your license key appears on the order page and is emailed automatically.</p></div>
+    <div class="step"><p><b>Redeem it in Discord.</b> Join <a href="https://discord.gg/FGKzwuQFQB">discord.gg/FGKzwuQFQB</a> and redeem your key with our bot — under a minute.</p></div>
+    <div class="step"><p><b>Enter the key in the loader.</b> Premium activates automatically. <b>You're done.</b></p></div>
   </div>
 
-  <h2 class="sec rv" id="faq">Frequently asked questions</h2>
+  <h2 class="sec rv" id="faq">Frequently asked <span class="hl">questions</span></h2>
   <p class="secs rv">Everything buyers usually ask before purchasing.</p>
   <div class="faq rv">
     <div class="q"><button>Is this really a one-time payment?<span class="ar">＋</span></button><div class="a"><p>Weekly, monthly and yearly — pick what fits. Every plan includes all features and all future updates, and you can cancel anytime.</p></div></div>
@@ -259,13 +338,13 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
   </div>
 
   <div class="final rv">
-    <h2>Ready to upgrade?</h2>
+    <h2>Ready to <span style="color:#3ad6b5">upgrade?</span></h2>
     <p>Weekly, monthly or yearly — see the plans and pick yours.</p>
     <a class="cta" href="pricing.html">View Pricing Plans</a>
   </div>
 
   <div class="contact rv" id="contact">
-    <h2 class="sec" style="margin-top:0">Contact &amp; support</h2>
+    <h2 class="sec" style="margin-top:0">Contact &amp; <span class="hl">support</span></h2>
     <p class="secs">We answer fast — usually within a few hours.</p>
     <div class="grid">
       <div class="card"><span class="ic">✉️</span><h3>Email support</h3><p>support@remmyhub.store<br>For orders, keys and refunds.</p></div>
@@ -289,7 +368,7 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
           </div>
         </div>
         <div class="tsrow"><div id="tsbox"></div></div>
-        <p class="fine">Protected by Cloudflare Turnstile</p>
+        <p class="fine">PROTECTED BY CLOUDFLARE TURNSTILE</p>
       </div></div>
     </div>
   </div>
@@ -303,20 +382,56 @@ p.secs{color:#8b959e;text-align:center;font-size:14px;margin-bottom:26px}
 </div>
 
 <script>
-/* FAQ accordion */
-document.querySelectorAll('.q button').forEach(function(b){
-  b.addEventListener('click',function(){
-    var q=b.parentElement,a=q.querySelector('.a'),open=q.classList.contains('open');
-    document.querySelectorAll('.q.open').forEach(function(o){o.classList.remove('open');o.querySelector('.a').style.maxHeight=null});
-    if(!open){q.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
-  });
-});
+/* ---------- particle network background ---------- */
+(function(){
+  var c=document.getElementById("pcanvas"),x=c.getContext("2d"),P=[],W,H,mx=-999,my=-999;
+  function size(){W=c.width=innerWidth;H=c.height=innerHeight;
+    var n=Math.min(90,Math.floor(W*H/22000));P=[];
+    for(var i=0;i<n;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35});
+  }
+  size();addEventListener("resize",size);
+  addEventListener("mousemove",function(e){mx=e.clientX;my=e.clientY});
+  function loop(){
+    x.clearRect(0,0,W,H);
+    for(var i=0;i<P.length;i++){
+      var p=P[i];p.x+=p.vx;p.y+=p.vy;
+      var dx=p.x-mx,dy=p.y-my,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<130&&d>0){p.vx+=dx/d*.04;p.vy+=dy/d*.04}
+      p.vx=Math.max(-.7,Math.min(.7,p.vx));p.vy=Math.max(-.7,Math.min(.7,p.vy));
+      if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+      x.fillStyle="rgba(125,232,207,.5)";x.fillRect(p.x-1,p.y-1,2,2);
+      for(var j=i+1;j<P.length;j++){
+        var q=P[j],ax=p.x-q.x,ay=p.y-q.y,dd=Math.sqrt(ax*ax+ay*ay);
+        if(dd<130){x.strokeStyle="rgba(58,214,181,"+(1-dd/130)*.14+")";x.lineWidth=1;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}
+      }
+    }
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
 
-/* reveal on scroll */
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});
+/* ---------- reveal on scroll (staggered) ---------- */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(e.isIntersecting){var el=e.target;
+    var sibs=el.parentElement?[].slice.call(el.parentElement.querySelectorAll('.rv')):[];
+    var idx=Math.max(0,Math.min(sibs.indexOf(el),5));
+    setTimeout(function(){el.classList.add('on')},idx*70);
+    io.unobserve(el);
+  }})},{threshold:.1});
 document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
 
-/* cursor-follow glow on cards */
+/* ---------- counters ---------- */
+var cio=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(!e.isIntersecting)return;var el=e.target;
+  var target=parseFloat(el.dataset.count),pre=el.dataset.pre||"",suf=el.dataset.suf||"";
+  var t0=null;function tick(t){if(!t0)t0=t;var k=Math.min((t-t0)/1200,1);k=1-Math.pow(1-k,3);
+    var v=(target*k).toFixed(target%1?2:0);el.innerHTML=pre+v+suf;
+    if(k<1)requestAnimationFrame(tick)}
+  requestAnimationFrame(tick);cio.unobserve(el);
+})},{threshold:.4});
+document.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el)});
+
+/* ---------- cursor glow on cards ---------- */
 document.querySelectorAll('.card').forEach(function(c){
   c.addEventListener('mousemove',function(e){
     var r=c.getBoundingClientRect();
@@ -325,14 +440,46 @@ document.querySelectorAll('.card').forEach(function(c){
   });
 });
 
-/* Turnstile — one explicit widget, scoped reset */
+/* ---------- FAQ ---------- */
+document.querySelectorAll('.q button').forEach(function(b){
+  b.addEventListener('click',function(){
+    var q=b.parentElement,a=q.querySelector('.a'),open=q.classList.contains('open');
+    document.querySelectorAll('.q.open').forEach(function(o){o.classList.remove('open');o.querySelector('.a').style.maxHeight=null});
+    if(!open){q.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
+  });
+});
+
+/* ---------- loader mockup animation ---------- */
+(function(){
+  var keyEl=document.getElementById("typeKey"),logEl=document.getElementById("mockLog"),okEl=document.getElementById("mockOk");
+  var togs=[].slice.call(document.querySelectorAll("[data-t]"));
+  var KEY="PREM-773b-f695-d48b";
+  var LINES=["> connecting to remmy.api … <span class='ok'>OK</span>",
+             "> validating license <span class='now'>"+KEY+"</span> … <span class='ok'>OK</span>",
+             "> injecting premium modules … <span class='ok'>DONE</span>"];
+  function reset(){keyEl.textContent="";logEl.innerHTML="";okEl.classList.remove("show");togs.forEach(function(t){t.classList.remove("on")})}
+  function type(i){
+    if(i<=KEY.length){keyEl.textContent=KEY.slice(0,i);setTimeout(function(){type(i+1)},34)}
+    else logs(0);
+  }
+  function logs(i){
+    if(i>=LINES.length){togs.forEach(function(t,k){setTimeout(function(){t.classList.add("on")},k*230)});
+      setTimeout(function(){okEl.classList.add("show")},togs.length*230+350);return}
+    logEl.innerHTML+=LINES[i]+"<br>";
+    setTimeout(function(){logs(i+1)},520);
+  }
+  function run(){reset();setTimeout(function(){type(0)},700);setTimeout(run,9500)}
+  run();
+})();
+
+/* ---------- Turnstile (one explicit widget, scoped reset) ---------- */
 var tsWidget=null, tsTok="";
 window.remmyTSInit=function(){
   tsWidget=turnstile.render("#tsbox",{sitekey:"0x4AAAAAAF4hgZFEOEa4Me01",theme:"dark",callback:function(tok){tsTok=tok}});
 };
 function tsReset(){tsTok="";try{turnstile.reset(tsWidget)}catch(e){}}
 
-/* Lost key -> email re-send (10-min cooldown handled by worker) */
+/* ---------- key support: re-send ---------- */
 async function resendKey(){
   var m=document.getElementById("kmail").value.trim().toLowerCase();
   var r=document.getElementById("kres");
@@ -354,7 +501,7 @@ async function resendKey(){
   tsReset();
 }
 
-/* Status check by key paste (masked response) */
+/* ---------- key support: status ---------- */
 async function checkStatus(){
   var kv=document.getElementById("skey").value.trim();
   var r=document.getElementById("sres");
@@ -369,8 +516,8 @@ async function checkStatus(){
     else if(!j.found){r.innerHTML='<span class="warn">Key not found — check it and try again.</span>';}
     else{
       r.innerHTML='<div class="kcard">'
-        +'<div style="font-size:12px;color:#8b959e">'+(j.plan||"Remmy HUB")+'</div>'
-        +'<div style="font-size:13px;color:#c3cad2">'+(j.masked||"")+'</div>'
+        +'<div style="font-size:11px;color:#8b959e">'+(j.plan||"Remmy HUB")+'</div>'
+        +'<div style="font-size:12.5px;color:#c3cad2">'+(j.masked||"")+'</div>'
         +'<div style="font-size:13px;font-weight:700;color:'+(j.color||"#7de8cf")+'">'+(j.status||"")+'</div></div>';
     }
   }catch(e){r.innerHTML='<span class="err">Could not reach the status server — try again.</span>';}
