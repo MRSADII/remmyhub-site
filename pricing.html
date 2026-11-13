@@ -5,10 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pricing — Remmy HUB</title>
 <meta name="description" content="Remmy HUB pricing — weekly, monthly and yearly plans for the all-in-one Roblox utility tool. Instant automatic delivery, cancel anytime.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070b'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='36' font-weight='800' fill='%233ad6b5' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:#07090d;color:#e8eaf0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.65;overflow-x:hidden}
+body{background:#05070b;color:#e8eaf0;font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.65;overflow-x:hidden}
+h1,h2{font-family:'Space Grotesk',sans-serif;letter-spacing:-.5px}
 a{color:#3ad6b5;text-decoration:none}
 .aur{position:fixed;inset:-20%;z-index:-3;background:
  radial-gradient(45% 42% at 18% 22%,rgba(58,214,181,.16),transparent 62%),
@@ -23,13 +28,14 @@ a{color:#3ad6b5;text-decoration:none}
  mask-image:radial-gradient(75% 62% at 50% 28%,#000 25%,transparent 100%)}
 .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
 .rv.on{opacity:1;transform:translateY(0)}
-.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;max-width:1000px;margin:0 auto;padding:16px 22px;background:rgba(10,13,17,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06);border-radius:0 0 18px 18px}
-.logo{font-weight:700;font-size:20px;color:#fff}
+.nav{position:sticky;top:14px;z-index:50;display:flex;justify-content:space-between;align-items:center;max-width:1060px;margin:14px auto 0;padding:10px 10px 10px 20px;background:rgba(10,14,19,.6);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08);border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.45)}
+.logo{font-weight:700;font-size:19px;color:#fff;font-family:'Space Grotesk',sans-serif;display:flex;align-items:center;gap:10px;letter-spacing:.3px}
+.lmark{width:30px;height:30px;border-radius:9px;background:linear-gradient(140deg,#7de8cf,#3ad6b5 55%,#22b18c);display:flex;align-items:center;justify-content:center;font-weight:700;color:#04120d;font-size:16px;box-shadow:0 4px 16px rgba(58,214,181,.45),inset 0 1px 0 rgba(255,255,255,.5)}
 .logo span{color:#3ad6b5}
-.navlinks{display:flex;gap:18px;flex-wrap:wrap}
-.navlinks a{color:#aab2bd;font-size:13.5px;transition:color .2s}
-.navlinks a:hover{color:#3ad6b5}
-.navlinks a.act{color:#3ad6b5}
+.navlinks{display:flex;gap:4px;flex-wrap:wrap}
+.navlinks a{color:#9aa4b2;font-size:13px;font-weight:500;padding:8px 12px;border-radius:10px;transition:color .2s,background .2s}
+.navlinks a:hover{color:#e8eaf0;background:rgba(255,255,255,.06)}
+.navlinks a.act{color:#3ad6b5;background:rgba(58,214,181,.1);border:1px solid rgba(58,214,181,.25);padding:7px 14px}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
 h1{font-size:clamp(30px,4.6vw,44px);color:#f8fafc;margin:34px 0 8px;text-align:center;font-weight:800}
 p.sub{color:#aab4be;text-align:center;font-size:15px;max-width:620px;margin:0 auto 8px}
@@ -66,7 +72,7 @@ p.sub{color:#aab4be;text-align:center;font-size:15px;max-width:620px;margin:0 au
 <div class="aur"></div><div class="gridov"></div>
 
 <div class="nav">
-  <div class="logo">Remmy <span>HUB</span></div>
+  <div class="logo"><span class="lmark">R</span>Remmy <span>HUB</span></div>
   <div class="navlinks">
     <a href="index.html">Home</a>
     <a href="index.html#features">Features</a>
